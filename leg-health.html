@@ -123,6 +123,13 @@
     .foot{font-size:11px;color:var(--muted);line-height:1.65;margin-top:14px;}
     .accent{color:var(--amber);font-weight:600;}
     .sgtitle{font-family:'Playfair Display',serif;font-size:13.5px;color:var(--forest);margin:14px 0 7px;}
+    .flash{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:50;
+      background:var(--forest);color:var(--cream);padding:9px 17px;border-radius:22px;
+      font-size:12.5px;box-shadow:0 6px 22px rgba(27,58,44,0.3);pointer-events:none;}
+    @media (prefers-reduced-motion:no-preference){
+      .flash{animation:flashin 0.18s ease-out;}
+      @keyframes flashin{from{opacity:0;transform:translate(-50%,7px);}to{opacity:1;transform:translate(-50%,0);}}
+    }
     @media print{
       .sidebar,.hdr,.noprint{display:none !important;}
       .db,.main{height:auto;overflow:visible;}
@@ -840,8 +847,23 @@ const FITTER_QS = [
    STORAGE + HELPERS
    ============================================================ */
 const KEY = "mbc_legs_v1";
-const loadState = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; } };
-const saveState = d => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} };
+const DOC = "state/legs";
+
+/* Storage envelope: {v, at, state}. `at` is a millisecond stamp used to
+   decide which copy wins when this device and the server disagree.
+   localStorage is always written, so the app works with no network and
+   outside the artifact runtime. When the runtime grants `db`, the same
+   state also lives server-side — which is what makes it survive a browser
+   clearing its site data, and follow you between phone and laptop. */
+const readLocal = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; } };
+const writeLocal = env => { try { localStorage.setItem(KEY, JSON.stringify(env)); } catch(e){} };
+const loadEnv = () => {
+  const raw = readLocal();
+  if (!raw) return null;
+  if (raw.state) return raw;
+  if (raw.logs || raw.start) return { v:1, at:0, state:raw }; // pre-sync format
+  return null;
+};
 const iso = (d = new Date()) => {
   const t = new Date(d.getTime() - d.getTimezoneOffset()*60000);
   return t.toISOString().slice(0,10);
@@ -859,6 +881,40 @@ const SCALES = [
   { k:"swell", n:"Visible swelling",       lo:"none", hi:"marked", inv:true },
   { k:"energy",n:"Energy",                 lo:"empty",hi:"good",  inv:false },
 ];
+
+/* Handing the viewer a file and putting text on the clipboard both behave
+   differently inside the artifact viewer than in a plain browser tab, so
+   both go through the runtime when it is there and fall back when it is
+   not — and both report what actually happened rather than failing quietly. */
+async function saveFile(filename, text) {
+  let dl = null;
+  try { dl = window.claude ? await window.claude.use("downloads") : null; } catch(e) { dl = null; }
+  if (dl) {
+    try { await dl.save({ filename, data: text }); return "Saved."; }
+    catch (e) {
+      if (e && e.code === "declined") return "Save cancelled.";
+      if (e && e.code === "rate_limited") return "Give that a moment, then try again.";
+      return "Could not save that file.";
+    }
+  }
+  try {
+    const url = URL.createObjectURL(new Blob([text], { type:"text/plain" }));
+    const a = document.createElement("a");
+    a.href = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+    return "Saved.";
+  } catch (e) { return "Could not save that file."; }
+}
+
+async function copyOut(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return "Copied.";
+    }
+  } catch (e) {}
+  return "Could not copy — select the text and copy it by hand.";
+}
 
 /* Tiny dependency-free line chart */
 function Spark({ series, color, height=54, inv }) {
@@ -940,8 +996,66 @@ const TABS = [
    ============================================================ */
 function App() {
   const [tab, setTab] = useState("today");
-  const [st, setSt] = useState(() => loadState() || DEFAULT_STATE);
-  useEffect(() => { saveState(st); }, [st]);
+  const boot = loadEnv();
+  const [st, setSt] = useState(() => (boot && boot.state) || DEFAULT_STATE);
+  const [sync, setSync] = useState("local");
+
+  const stRef = useRef(st); stRef.current = st;
+  const atRef = useRef((boot && boot.at) || 0);
+  const dbRef = useRef(null);
+  const fromRemote = useRef(false);
+  const firstRun = useRef(true);
+  const pushT = useRef(null);
+
+  const pushSoon = () => {
+    if (!dbRef.current) return;
+    clearTimeout(pushT.current);
+    pushT.current = setTimeout(() => {
+      dbRef.current.doc(DOC).set({ v:1, at:atRef.current, state:stRef.current })
+        .then(() => setSync("synced"))
+        .catch(() => setSync("local"));
+    }, 1200);
+  };
+
+  // Persist every change locally, and queue it for the server.
+  useEffect(() => {
+    if (firstRun.current) { firstRun.current = false; return; }
+    if (fromRemote.current) { fromRemote.current = false; return; }
+    atRef.current = Date.now();
+    writeLocal({ v:1, at:atRef.current, state:st });
+    pushSoon();
+  }, [st]);
+
+  // Adopt server state on open, then stay live with any other device.
+  useEffect(() => {
+    let live = true, unsub = null;
+    (async () => {
+      let db = null;
+      try { db = window.claude ? await window.claude.use("db") : null; } catch(e) { db = null; }
+      if (!live || !db) return;
+      dbRef.current = db;
+      const adopt = d => {
+        fromRemote.current = true;
+        atRef.current = d.at || 0;
+        writeLocal({ v:1, at:atRef.current, state:d.state });
+        setSt(d.state);
+      };
+      try {
+        const snap = await db.doc(DOC).get();
+        const d = snap.exists ? snap.data() : null;
+        if (d && d.state && (d.at || 0) > atRef.current) adopt(d);
+        else if (atRef.current > 0) await db.doc(DOC).set({ v:1, at:atRef.current, state:stRef.current });
+        if (!live) return;
+        setSync("synced");
+        unsub = db.doc(DOC).onSnapshot(sn => {
+          if (!sn.exists || sn.metadata.hasPendingWrites) return;
+          const r = sn.data();
+          if (r && r.state && (r.at || 0) > atRef.current) adopt(r);
+        }, () => setSync("local"));
+      } catch (e) { setSync("local"); }
+    })();
+    return () => { live = false; clearTimeout(pushT.current); if (unsub) unsub(); };
+  }, []);
 
   const today = iso();
   const dow = new Date().getDay();
@@ -999,7 +1113,10 @@ function App() {
   const totalSessions = Object.values(st.done).reduce((a,v) => a + v.length, 0);
   const footDoneToday = FOOTCHECK.every(f => (st.feet[today]||{})[f.k]);
 
-  const copyText = t => { navigator.clipboard?.writeText(t); };
+  const [flash, setFlash] = useState("");
+  const say = m => { setFlash(m); setTimeout(() => setFlash(""), 3200); };
+  const copyText = t => { copyOut(t).then(say); };
+  const download = (filename, text) => { saveFile(filename, text).then(say); };
 
   const buildReport = () => {
     const days = Object.keys(st.logs).sort();
@@ -1073,8 +1190,13 @@ function App() {
       <div className="huser">
         <strong>Week {week} of 8</strong>
         Phase {phase} · {phaseData.n}
+        <div style={{fontSize:9.5,marginTop:2,opacity:0.8}}>
+          {sync === "synced" ? "✓ Synced across your devices" : "Saved on this device"}
+        </div>
       </div>
     </div>
+
+    {flash && <div className="flash" role="status">{flash}</div>}
 
     <div className="layout">
       <div className="sidebar">
@@ -1084,7 +1206,9 @@ function App() {
           </div>
         ))}
         <div className="sfoot">
-          Everything you enter stays on this device only. Nothing is uploaded anywhere.
+          {sync === "synced"
+            ? "Your log syncs privately across your own devices. Nobody else can see it."
+            : "Everything you enter stays on this device."}
         </div>
       </div>
 
@@ -1802,13 +1926,10 @@ function App() {
               <div className="row">
                 <button className="btn ba" onClick={() => copyText(buildReport())}>Copy report</button>
                 <button className="btn bo" onClick={() => window.print()}>Print / save as PDF</button>
-                <button className="btn bo" onClick={() => {
-                  const blob = new Blob([buildReport()], {type:"text/plain"});
-                  const a = document.createElement("a");
-                  a.href = URL.createObjectURL(blob);
-                  a.download = "leg-health-report-" + today + ".txt";
-                  a.click();
-                }}>Download .txt</button>
+                <button className="btn bo"
+                  onClick={() => download("leg-health-report-" + today + ".txt", buildReport())}>
+                  Download .txt
+                </button>
               </div>
             </div>
             <div className="card"><div className="tmpl" style={{maxHeight:"none"}}>{buildReport()}</div></div>
@@ -1827,17 +1948,15 @@ function App() {
             <div className="card noprint" style={{marginTop:15}}>
               <div className="ctitle">Your data</div>
               <div style={{fontSize:12.5,color:"var(--muted)",lineHeight:1.7,marginBottom:11}}>
-                Everything lives in this browser on this device only. Nothing is sent anywhere. That also means
-                clearing your browser data will erase it — export a backup now and then.
+                {sync === "synced"
+                  ? "Your log is saved on this device and to your own private store, so it survives a browser clearing its data and follows you between your phone and your computer. Only you can open it. Export a backup anyway before anything you would hate to lose."
+                  : "Your log lives in this browser on this device. Nothing is sent anywhere — which also means clearing your browser data will erase it, so export a backup now and then."}
               </div>
               <div className="row">
-                <button className="btn bo bsm" onClick={() => {
-                  const blob = new Blob([JSON.stringify(st,null,2)], {type:"application/json"});
-                  const a = document.createElement("a");
-                  a.href = URL.createObjectURL(blob);
-                  a.download = "leg-health-backup-" + today + ".json";
-                  a.click();
-                }}>Export backup (.json)</button>
+                <button className="btn bo bsm"
+                  onClick={() => download("leg-health-backup-" + today + ".json", JSON.stringify(st, null, 2))}>
+                  Export backup (.json)
+                </button>
                 <label className="btn bo bsm" style={{display:"inline-block"}}>
                   Restore backup
                   <input type="file" accept="application/json" style={{display:"none"}} onChange={e => {
