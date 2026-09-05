@@ -22,8 +22,12 @@
       --plum:#6a4b8a;--plum-bg:#f1ecf7;
     }
     html,body,#root{height:100%;margin:0;padding:0;}
+    /* paint the ground on html too, so any surrounding canvas (previews,
+       embeds, phone browsers overscrolling) shows cream rather than black */
+    html{background:var(--cream);}
     body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);-webkit-text-size-adjust:100%;}
-    .db{height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+    /* dvh keeps the layout honest when a mobile URL bar shows and hides */
+    .db{height:100vh;height:100dvh;min-height:520px;display:flex;flex-direction:column;overflow:hidden;}
     .hdr{background:var(--forest);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:10px;}
     .hbrand{display:flex;align-items:center;gap:11px;min-width:0;}
     .hlogo{width:37px;height:37px;background:linear-gradient(135deg,var(--amber),var(--amber2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 3px 8px rgba(196,129,58,0.4);flex-shrink:0;}
