@@ -830,6 +830,44 @@ const ROUTES = [
     catch:"You wrap it on rather than pulling it up, which sidesteps your donning problem entirely, and being adjustable means it tolerates a body that does not match a size chart. This is the one thing on this page you could plausibly be wearing soonest." },
 ];
 
+/* Two different credentials, and you may need both from different people */
+const TWO_ROLES = `A Certified Lymphedema Therapist (CLT) and a certified compression FITTER are not the same credential, and a place can genuinely have one and not the other. This trips people up constantly.
+
+  A CLT treats you — manual lymphatic drainage, decongestive therapy,
+  teaching you a self-drainage sequence for your own body.
+
+  A certified fitter measures you and ORDERS the garment, and only some
+  of them handle custom flat knit as opposed to stock sizes.
+
+So ask both questions, separately, every time: "Do you have a certified lymphedema therapist?" and "Do you have someone who fits and orders CUSTOM FLAT-KNIT garments?" Plenty of places say yes to the first and no to the second, and if you only ask one question you will not find that out until you have driven there.`;
+
+const DIRECTORIES = [
+  { n:"Norton School therapist referral", d:"A referral form that takes your ZIP code and finds certified therapists near you. The most direct way to search by location.", u:"nortonschool.com/therapist-referrals.html" },
+  { n:"LANA therapist directory", d:"Lymphology Association of North America — therapists holding the LANA certification. Linked from Klose Training's resources page.", u:"klosetraining.com/resources/links/" },
+  { n:"LE&RN", d:"Lymphatic Education & Research Network. Guidance on finding a therapist, plus state chapters.", u:"lymphaticnetwork.org" },
+  { n:"Lipedema Foundation", d:"Maintains information on clinicians who actually know lipedema, which is a narrower group than lymphedema therapists generally.", u:"lipedema.org" },
+];
+
+const FIRST_CALL = `THE SHORTEST PATH IS PROBABLY YOUR OWN PT
+
+Before you cold-call anyone: your physical therapist already measured you
+and already ordered something specific. That means they already have a
+supplier relationship, and they already know what went wrong with the
+order that came back.
+
+Ask them these three questions:
+
+  1. Which supplier did you send my order to, and do you have their
+     direct number?
+  2. Was what I received a substitution for what you ordered, or was
+     that the only thing the plan would approve?
+  3. Do you know anyone locally who fits CUSTOM FLAT-KNIT garments —
+     or can you refer me to a certified lymphedema therapist who does?
+
+You are not starting from zero here. You are one link short of a chain
+that already exists, and the person holding the other end is someone you
+already see.`;
+
 const FITTER_QS = [
   "Are you certified to fit custom flat-knit garments, and how many lipedema patients do you fit in a typical month?",
   "Which manufacturers' custom programs do you work with, and which would you choose for my shape and why?",
@@ -1899,6 +1937,33 @@ function App() {
                 <button className="btn ba bsm noprint" onClick={() => copyText(SUPPLIER_SCRIPT)}>Copy</button>
               </div>
               <div className="tmpl">{SUPPLIER_SCRIPT}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div className="ctitle" style={{marginBottom:0}}>Start with the person you already see</div>
+                <button className="btn ba bsm noprint" onClick={() => copyText(FIRST_CALL)}>Copy</button>
+              </div>
+              <div className="tmpl">{FIRST_CALL}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Two credentials, not one</div>
+              <div style={{fontSize:12.5,lineHeight:1.85,whiteSpace:"pre-wrap"}}>{TWO_ROLES}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Directories for searching your own area</div>
+              <div style={{fontSize:12.5,color:"var(--muted)",lineHeight:1.7,marginBottom:11}}>
+                These stay useful after any one lead goes cold, and they search by location.
+              </div>
+              {DIRECTORIES.map((d,i) => (
+                <div key={i} style={{marginBottom:11}}>
+                  <div style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>{d.n}</div>
+                  <div style={{fontSize:12,color:"var(--muted)",lineHeight:1.7}}>{d.d}</div>
+                  <div style={{fontSize:12,color:"var(--amber)",marginTop:2}}>{d.u}</div>
+                </div>
+              ))}
             </div>
 
             <div className="card mb2">
