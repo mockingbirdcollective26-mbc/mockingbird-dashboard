@@ -738,6 +738,28 @@ THE THREE NUMBERS THAT DECIDE EVERYTHING
   Widest hip measurement (cH) ............... ______   ← decides whether you need
                                                           a waist or hip anchor`;
 
+/* ---------- WHY THE SEARCH KEEPS FAILING, AND THE ACTUAL ROUTE ---------- */
+const WHY_INVISIBLE = `The compression market sizes legs by CIRCUMFERENCE, not by length.
+
+Look at any "plus size" or "wide calf" or "bariatric" compression range and every number in the size chart is a thigh or calf measurement — fits a calf up to 22 inches, fits a thigh up to 37 inches, 2XL through 8XL. Almost none of it is about how LONG your leg is.
+
+So a 6-foot frame falls into a gap the retail market barely acknowledges. You can search "plus size compression" forever and keep landing on garments that are wider but no longer, which is why they keep stopping at your mid-calf. You have not been failing to find it. It is close to not being there.`;
+
+const ROUTES = [
+  { n:"Made-to-measure (custom) flat knit", tag:"The actual answer", tone:"tg",
+    d:"At 6 feet with lipedema proportions, there is no stock size that fits you — but made-to-measure makes your height irrelevant, because the garment is built from your numbers instead of a chart. Every one of the major manufacturers runs a custom program: Juzo Expert, medi mediven 550, Sigvaris Advance, and Jobst Elvarex. Juzo in particular has a strong reputation for custom and lymphedema work. Your PT already took everything these order forms need.",
+    catch:"Here is the part nobody tells you, and it is almost certainly why your search has come up empty: custom flat knit is not sold direct to consumers. It is not on any retail website and you cannot add it to a cart. A certified fitter measures you and submits an order form to the manufacturer. You have been looking for a product when what you need is a person." },
+  { n:"Remote / virtual fitting", tag:"Start here", tone:"ty",
+    d:"You do not have to find someone local. Lymphedema Fitters of America (run by Heide's) does one-on-one virtual fittings nationwide — measure-along videos, a secure portal to upload measurements, photos and clinical notes, and telehealth appointments with a master fitter. For people not currently seeing a lymphedema therapist they will walk you through measuring directly.",
+    catch:"You already have your PT's measurement set, which puts you further along than most people starting this process. Expect roughly 10 days or more for fabrication once the order is actually placed, so getting the order in is the thing that matters." },
+  { n:"Certified fitter, in person", tag:"If there is one near you", tone:"tb",
+    d:"Mastectomy and compression boutiques, lymphedema clinics, and prosthetics and orthotics practices often have certified fitters. The phrase that gets you to the right person is 'do you do CUSTOM FLAT-KNIT fittings' — not 'do you sell compression stockings', which nearly everyone says yes to.",
+    catch:"A certified lymphedema therapist (CLT) referral from your PT is often the fastest route in, and many CLTs are also certified fitters." },
+  { n:"Adjustable wrap, available now", tag:"While you wait", tone:"tt",
+    d:"circaid juxtafit essentials comes in a lower-leg piece with several length options including long and extra-long, plus a full-calf width, and an upper-leg piece and whole-leg system for the thighs. It is inelastic and closes with adjustable bands.",
+    catch:"You wrap it on rather than pulling it up, which sidesteps your donning problem entirely, and being adjustable means it tolerates a body that does not match a size chart. This is the one thing on this page you could plausibly be wearing soonest." },
+];
+
 const FITTER_QS = [
   "Are you certified to fit custom flat-knit garments, and how many lipedema patients do you fit in a typical month?",
   "Which manufacturers' custom programs do you work with, and which would you choose for my shape and why?",
@@ -1582,6 +1604,23 @@ function App() {
               <div className="ctitle">Start with this one rule</div>
               <div style={{fontSize:12.5,lineHeight:1.85,whiteSpace:"pre-wrap"}}>{BAND_PRINCIPLE}</div>
             </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Why you have not been able to find one</div>
+              <div style={{fontSize:12.5,lineHeight:1.85,whiteSpace:"pre-wrap"}}>{WHY_INVISIBLE}</div>
+            </div>
+
+            <div className="sgtitle">Where to actually get them</div>
+            {ROUTES.map((r,i) => (
+              <div key={i} className="card mb">
+                <div className="rowb mb">
+                  <div className="ctitle" style={{marginBottom:0}}>{r.n}</div>
+                  <span className={"tag " + r.tone} style={{flexShrink:0}}>{r.tag}</span>
+                </div>
+                <div style={{fontSize:12.5,lineHeight:1.8,marginBottom:8}}>{r.d}</div>
+                <div style={{fontSize:12.5,lineHeight:1.75,background:"#eef5ef",borderRadius:8,padding:"9px 11px"}}>{r.catch}</div>
+              </div>
+            ))}
 
             <div className="sgtitle">What is actually going wrong</div>
             {FIT_DIAGNOSIS.map((f,i) => (
