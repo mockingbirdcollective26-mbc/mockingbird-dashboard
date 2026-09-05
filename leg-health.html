@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#1b3a2c"/>
+  <title>Strong Legs — Lipedema, Neuropathy &amp; Knee OA Plan</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --cream:#f6f1e9;--forest:#1b3a2c;--forest2:#2a5c42;
+      --amber:#c4813a;--amber2:#e09a4f;--sage:#6b9278;
+      --sage-light:#a8c5ad;--text:#2a2318;--muted:#7a7060;
+      --card:#fdfaf5;--border:#e4ddd0;--sh:0 4px 18px rgba(27,58,44,0.08);
+      --rose:#b5486a;--rose-bg:#fbeef2;
+      --teal:#2e6f78;--teal-bg:#e6f2f3;
+      --plum:#6a4b8a;--plum-bg:#f1ecf7;
+    }
+    html,body,#root{height:100%;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);-webkit-text-size-adjust:100%;}
+    .db{height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+    .hdr{background:var(--forest);padding:13px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;gap:10px;}
+    .hbrand{display:flex;align-items:center;gap:11px;min-width:0;}
+    .hlogo{width:37px;height:37px;background:linear-gradient(135deg,var(--amber),var(--amber2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 3px 8px rgba(196,129,58,0.4);flex-shrink:0;}
+    .htitle{font-family:'Playfair Display',serif;color:var(--cream);font-size:18px;font-weight:700;line-height:1.2;}
+    .hsub{color:var(--sage-light);font-size:9.5px;font-weight:300;margin-top:1px;letter-spacing:0.6px;}
+    .huser{color:var(--sage-light);font-size:11px;text-align:right;flex-shrink:0;}
+    .huser strong{color:var(--cream);font-size:12px;display:block;}
+    .layout{display:flex;flex:1;overflow:hidden;}
+    .sidebar{width:196px;background:var(--forest);flex-shrink:0;overflow-y:auto;border-right:1px solid rgba(255,255,255,0.07);}
+    .sitem{padding:10px 15px;color:var(--sage-light);font-size:12.5px;cursor:pointer;border-left:3px solid transparent;transition:all 0.18s;display:flex;align-items:center;gap:8px;user-select:none;}
+    .sitem:hover{color:var(--cream);background:rgba(255,255,255,0.05);}
+    .sitem.on{color:var(--amber2);border-left-color:var(--amber2);background:rgba(255,255,255,0.07);}
+    .sfoot{padding:14px 15px;border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;color:var(--sage-light);font-size:10.5px;line-height:1.6;}
+    .main{flex:1;overflow-y:auto;background:var(--cream);}
+    .pg{padding:20px;max-width:960px;}
+    @media(max-width:660px){
+      .layout{flex-direction:column;}
+      .sidebar{width:100%;display:flex;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+      .sitem{padding:9px 11px;border-left:none;border-bottom:2.5px solid transparent;white-space:nowrap;font-size:11px;}
+      .sitem.on{border-bottom-color:var(--amber2);border-left:none;background:rgba(255,255,255,0.07);}
+      .sfoot{display:none;}
+      .pg{padding:13px;}
+      .htitle{font-size:15px;}
+    }
+    .ttl{font-family:'Playfair Display',serif;font-size:22px;color:var(--forest);margin-bottom:3px;}
+    .sub{color:var(--muted);font-size:13px;margin-bottom:17px;line-height:1.6;}
+    .ctitle{font-family:'Playfair Display',serif;font-size:15.5px;color:var(--forest);margin-bottom:8px;}
+    .lbl{font-size:11px;font-weight:600;color:var(--forest);margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:0.5px;}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:17px;box-shadow:var(--sh);}
+    .mb{margin-bottom:11px;}
+    .mb2{margin-bottom:16px;}
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;}
+    @media(max-width:660px){.g2,.g3{grid-template-columns:1fr;}.g4{grid-template-columns:1fr 1fr;}}
+    .btn{padding:8px 15px;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:500;font-size:12.5px;cursor:pointer;border:none;transition:all 0.18s;}
+    .bf{background:var(--forest);color:var(--cream);}
+    .bf:hover{background:var(--forest2);}
+    .ba{background:var(--amber);color:white;}
+    .ba:hover:not(:disabled){background:#b5712f;}
+    .btn:disabled{opacity:0.4;cursor:not-allowed;}
+    .bo{background:transparent;color:var(--forest);border:1.5px solid var(--border);}
+    .bo:hover{background:var(--forest);color:var(--cream);}
+    .bsm{padding:5px 10px;font-size:11px;border-radius:7px;}
+    .bfull{width:100%;}
+    select,textarea,input[type=text],input[type=number],input[type=date]{font-family:'DM Sans',sans-serif;font-size:12.5px;border:1.5px solid var(--border);border-radius:8px;padding:8px 11px;background:white;color:var(--text);width:100%;outline:none;transition:border-color 0.2s;}
+    select:focus,textarea:focus,input:focus{border-color:var(--sage);}
+    textarea{resize:vertical;line-height:1.65;}
+    input[type=range]{width:100%;accent-color:var(--forest);height:26px;}
+    .tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:500;margin:2px 3px 2px 0;}
+    .tg{background:#e8f5e9;color:#2e7d32;}.ty{background:#fff8e1;color:#8d5a00;}
+    .tr{background:#fce4ec;color:#c62828;}.tb{background:#e3f2fd;color:#1565c0;}
+    .tp{background:#f3e5f5;color:#6a1b9a;}.tt{background:var(--teal-bg);color:var(--teal);}
+    hr{border:none;border-top:1px solid var(--border);margin:15px 0;}
+    .warn{background:#fff8e1;border:1px solid #ffe0a3;border-left:4px solid var(--amber);border-radius:9px;padding:12px 14px;font-size:12.5px;line-height:1.7;margin-bottom:13px;}
+    .danger{background:var(--rose-bg);border:1px solid #f2c5d3;border-left:4px solid var(--rose);border-radius:9px;padding:12px 14px;font-size:12.5px;line-height:1.7;margin-bottom:13px;}
+    .info{background:#f0f5f1;border:1px solid var(--sage-light);border-radius:9px;padding:12px 14px;font-size:12.5px;line-height:1.7;margin-bottom:13px;}
+    .kpi{background:var(--card);border:1px solid var(--border);border-radius:11px;padding:13px;text-align:center;}
+    .kpiv{font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);line-height:1.1;}
+    .kpil{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin-top:5px;}
+    .exrow{border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--card);margin-bottom:9px;}
+    .exhd{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;cursor:pointer;}
+    .exname{font-weight:600;color:var(--forest);font-size:13.5px;}
+    .exdose{font-size:11.5px;color:var(--amber);font-weight:500;margin-top:2px;}
+    .exbody{font-size:12.5px;line-height:1.7;color:var(--text);margin-top:10px;border-top:1px dashed var(--border);padding-top:10px;}
+    .exbody ul{margin:5px 0 5px 17px;}
+    .exbody li{margin-bottom:3px;}
+    .exlabel{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--sage);margin-top:9px;}
+    .chk{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--card);margin-bottom:7px;font-size:12.5px;line-height:1.55;cursor:pointer;user-select:none;}
+    .chk.done{background:#eef5ef;border-color:var(--sage-light);}
+    .chk input{width:17px;height:17px;flex-shrink:0;margin-top:1px;accent-color:var(--forest);}
+    .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .rowb{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+    .bar{height:8px;background:var(--border);border-radius:5px;overflow:hidden;}
+    .barf{height:100%;background:linear-gradient(90deg,var(--sage),var(--forest2));}
+    .phase{border-left:3px solid var(--amber2);padding:2px 0 2px 13px;margin-bottom:15px;}
+    .daycard{border:1px solid var(--border);border-radius:10px;padding:11px 12px;background:var(--card);}
+    .daycard.today{border-color:var(--amber2);box-shadow:0 0 0 2px rgba(224,154,79,0.18);}
+    .dayname{font-size:10.5px;text-transform:uppercase;letter-spacing:0.7px;color:var(--muted);}
+    .daysess{font-weight:600;color:var(--forest);font-size:12.5px;margin-top:3px;line-height:1.35;}
+    .daymin{font-size:11px;color:var(--amber);margin-top:3px;}
+    table.tbl{width:100%;border-collapse:collapse;font-size:12px;}
+    table.tbl th{text-align:left;padding:7px 8px;background:#eef2ec;color:var(--forest);font-size:10.5px;text-transform:uppercase;letter-spacing:0.5px;border-bottom:1px solid var(--border);}
+    table.tbl td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55;}
+    table.tbl tr:last-child td{border-bottom:none;}
+    .mcode{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600;color:var(--forest);font-size:12px;}
+    .minput{width:74px;padding:5px 7px;font-size:12px;text-align:center;}
+    .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .tmpl{background:#fbfaf7;border:1px solid var(--border);border-radius:9px;padding:13px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;line-height:1.75;white-space:pre-wrap;max-height:420px;overflow-y:auto;}
+    .timer{font-family:'Playfair Display',serif;font-size:40px;color:var(--forest);text-align:center;line-height:1;}
+    .pill{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;font-size:11.5px;font-weight:500;border:1.5px solid var(--border);background:white;color:var(--muted);cursor:pointer;user-select:none;margin:0 5px 5px 0;}
+    .pill.on{background:var(--forest);color:var(--cream);border-color:var(--forest);}
+    .foot{font-size:11px;color:var(--muted);line-height:1.65;margin-top:14px;}
+    .accent{color:var(--amber);font-weight:600;}
+    .sgtitle{font-family:'Playfair Display',serif;font-size:13.5px;color:var(--forest);margin:14px 0 7px;}
+    @media print{
+      .sidebar,.hdr,.noprint{display:none !important;}
+      .db,.main{height:auto;overflow:visible;}
+      .pg{max-width:100%;padding:0;}
+      .card{box-shadow:none;break-inside:avoid;}
+      body{background:white;}
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useRef, useMemo } = React;
+
+/* ============================================================
+   EXERCISE LIBRARY
+   Every movement here is chosen to be simultaneously:
+   - knee-OA safe (low compression / no deep flexion under load)
+   - lipedema-friendly (pumping, non-bruising, no heavy eccentric loading)
+   - neuropathy-aware (supported, shod, no unsupported single-leg balance)
+   ============================================================ */
+const EX = [
+  // ---------- PRIME / LYMPH ----------
+  { id:"breath", n:"Diaphragmatic Breathing", cat:"Prime", pos:"Lying down, knees bent", dose:"8–10 slow breaths", ph:1,
+    why:"The deep breath is the engine of the whole lymphatic system. The pressure change in your chest pulls fluid up out of your legs. Doing this first is what makes everything after it drain better.",
+    cues:["Hand on belly, hand on ribs.","Breathe in through the nose for 4 — the belly hand rises, the chest hand stays quiet.","Out through pursed lips for 6.","Never hold your breath."],
+    mod:"Do it seated in a recliner with legs up if lying flat is uncomfortable.", watch:"Dizziness means you are going too fast. Slow down." },
+  { id:"nodes", n:"Neck & Collarbone Node Opening", cat:"Prime", pos:"Seated or lying", dose:"10 circles each spot", ph:1,
+    why:"Empties the drainage terminal at the base of your neck first, so there is somewhere for leg fluid to go. Drain the sink before you open the tap.",
+    cues:["Feather-light — stretch the skin, do not rub or press into muscle.","Flat fingers just above each collarbone, slow circles toward the center of the neck.","Then the hollow behind each ear, then down the side of the neck."],
+    mod:"Skip if you have any neck-node issues your doctor has flagged.", watch:"If it turns your skin red, you are pressing far too hard." },
+  { id:"groin", n:"Groin & Hip Crease Node Stimulation", cat:"Prime", pos:"Lying down", dose:"10 pumps each side", ph:1,
+    why:"The inguinal nodes in the crease of your hip are where thigh fluid drains. Waking them up before leg work is what turns exercise into a drainage session.",
+    cues:["Flat hand in the crease where thigh meets torso.","Gentle press in and up toward the belly button, then release. Slow.","Both sides."],
+    mod:"Can be done seated with a soft flat hand.", watch:"Tender is normal with lipedema. Sharp pain is not — ease off." },
+  { id:"ankpump", n:"Ankle Pumps (legs elevated)", cat:"Prime", pos:"Lying, legs up on pillows above heart", dose:"2 × 20 each foot", ph:1,
+    why:"This is your calf muscle pump — the single most effective mechanical thing you can do for fluid in the lower leg. Elevating first lets gravity help instead of fight you.",
+    cues:["Pull the toes up hard toward your shin, then point away.","Big slow range — you should feel the calf tighten and release.","Elevate the legs on 2–3 pillows so the ankles sit above the heart."],
+    mod:"Do it seated any time you have been still for 30 minutes.", watch:"Cramping in the calf — shorten the range and slow down." },
+  { id:"ankcircle", n:"Ankle Circles / Alphabet", cat:"Prime", pos:"Lying or seated, leg extended", dose:"10 circles each way, or spell A–J", ph:1,
+    why:"Keeps the ankle joint mobile and feeds movement signal into feet that are not sending much sensation back. Mobility here protects your balance.",
+    cues:["Move from the ankle, not the whole leg.","Slow, big, controlled circles.","Tracing letters in the air gives the brain more to work with than plain circles."],
+    mod:"Rest the calf on a rolled towel so the heel is free.", watch:"Stop before the point where the ankle clicks painfully." },
+  { id:"kneerock", n:"Gentle Knee Rocking (ROM warm-up)", cat:"Prime", pos:"Seated, foot on floor", dose:"15 slow each side", ph:1,
+    why:"Arthritic joints need synovial fluid moved through them before load. Ten easy swings is what turns a stiff knee into a knee that tolerates strength work.",
+    cues:["Sit tall, swing the lower leg forward and back, unloaded.","Small and easy — this is oiling the hinge, not exercise.","No forcing into the painful end range."],
+    mod:"Sit on a slightly higher surface so the foot swings freely.", watch:"Grinding with pain is a stop. Painless crepitus (noise) is fine." },
+  { id:"heelslide", n:"Heel Slides", cat:"Prime", pos:"Lying on back", dose:"2 × 10 each leg", ph:1,
+    why:"Restores knee bend range without any body weight on the joint. Losing knee flexion is what eventually makes stairs and cars hard, so you protect it now.",
+    cues:["Slide the heel toward the buttock as far as comfortable, then straighten fully.","A plastic bag or sock under the heel makes it glide.","Full straightening at the end matters as much as the bend."],
+    mod:"Loop a belt around the foot and assist the slide with your arms.", watch:"Move to the point of stretch, not into pain." },
+
+  // ---------- STRENGTH: KNEE & HIP ----------
+  { id:"quadset", n:"Quad Sets (isometric)", cat:"Strength", pos:"Lying, leg straight", dose:"3 × 10, hold 5 sec", ph:1,
+    why:"The single most protective exercise for an arthritic knee. It rebuilds the quadriceps that hold the kneecap in its groove — with zero joint movement, so it never aggravates the cartilage.",
+    cues:["Press the back of the knee down into the bed and tighten the thigh.","Pull the kneecap up toward the hip.","Hold 5, relax 5. Breathe through it."],
+    mod:"Roll a small towel under the knee if fully straight is uncomfortable.", watch:"None — this is your safest exercise. Do it on flare days too." },
+  { id:"slr", n:"Straight Leg Raise", cat:"Strength", pos:"Lying on back", dose:"3 × 8–12 each leg", ph:1,
+    why:"Loads the quad through the hip instead of the knee — you build the muscle that supports the joint without bending the joint at all. The best strength-to-risk ratio you have.",
+    cues:["Set the quad first (tighten it), THEN lift.","Lift only to the height of the opposite bent knee.","Lower slowly — count 3 down. The slow lower is where the muscle is built.","Bend the other knee with the foot flat to protect your back."],
+    mod:"Too hard? Do quad sets only. Too easy? Add a 1–2 lb ankle weight in Phase 3.", watch:"Low back arching = your leg is going too high. Lower the range." },
+  { id:"sac", n:"Short-Arc Quad", cat:"Strength", pos:"Lying, rolled towel under knee", dose:"3 × 10 each leg", ph:1,
+    why:"Trains the last 30 degrees of knee straightening — the exact range that gives you a stable knee at heel strike when you walk. Weakness here is why knees buckle.",
+    cues:["Rolled towel or pool noodle under the knee so it stays slightly bent.","Straighten only the lower leg, lifting the heel off the bed.","Squeeze the thigh hard at the top for 2 seconds, lower slowly."],
+    mod:"Thicker roll = smaller, easier arc.", watch:"Keep the back of the knee on the roll the whole time." },
+  { id:"bridge", n:"Glute Bridge", cat:"Strength", pos:"Lying, knees bent, feet flat", dose:"3 × 10, hold 3 sec", ph:1,
+    why:"Strong glutes take load off the knees on every step, and the hip motion pumps the deep pelvic lymphatics. Two problems, one exercise.",
+    cues:["Feet hip-width, heels close enough to graze with the fingertips.","Squeeze the buttocks FIRST, then lift the hips.","Ribs stay down — do not arch the low back to get higher.","Lower one vertebra at a time."],
+    mod:"Phase 3: march slowly at the top, or lift one heel.", watch:"Hamstring cramp — move the feet slightly further from your body." },
+  { id:"clamband", n:"Clamshell with Band", cat:"Strength", pos:"Side lying, knees bent 45°", dose:"3 × 12 each side", ph:2,
+    why:"Builds the gluteus medius on the side of the hip. This is the muscle that stops the knee from caving inward — and inward collapse is what wears the inner knee compartment.",
+    cues:["Light loop band just above the knees.","Hips stacked, heels together, lift only the top knee.","No rolling backward — a hand on the floor behind you keeps you honest.","Slow open, slower close."],
+    mod:"No band at first. Seated version: band above knees, press the knees apart in a chair.", watch:"Feel it on the SIDE of the hip. Low back burn means you rolled back." },
+  { id:"hipabd", n:"Standing Hip Abduction (counter support)", cat:"Strength", pos:"Standing, both hands on counter", dose:"2 × 12 each leg", ph:2,
+    why:"Same hip stabilizer as the clamshell, but upright, which teaches it to fire when you actually walk. The counter hold is non-negotiable with neuropathy.",
+    cues:["Both hands on a solid counter — this is a strength exercise, not a balance test.","Lift the leg straight out to the side, toes pointing forward.","Small range: 6–8 inches is plenty.","Stand tall, do not lean away."],
+    mod:"Add a light band at the ankles in Phase 3.", watch:"If you cannot keep both hands down, this is not your exercise yet." },
+  { id:"hamcurl", n:"Standing Hamstring Curl", cat:"Strength", pos:"Standing, hands on counter", dose:"2 × 12 each leg", ph:2,
+    why:"Hamstrings are the knee's rear brake. Balanced quad and hamstring strength is what stops the joint being pulled unevenly.",
+    cues:["Hands on the counter, stand tall.","Bend one knee, bringing the heel toward the buttock.","Keep the thighs side by side — do not swing the knee forward.","Lower with control."],
+    mod:"Seated alternative: press the heel back into a chair leg and hold 5 seconds.", watch:"Hamstring cramping is common — stop the set and stretch gently." },
+  { id:"tke", n:"Terminal Knee Extension (band)", cat:"Strength", pos:"Standing, band anchored in front", dose:"3 × 12 each leg", ph:2,
+    why:"Directly trains the knee to lock out straight under load — the position of maximum stability. Excellent for arthritic knees because there is no bend under compression.",
+    cues:["Loop a band around the back of the knee, anchored at knee height in front of you.","Start with a slight bend, then straighten the knee against the band pull.","Squeeze the quad at the end, 2 seconds.","Foot stays flat, heel down."],
+    mod:"No anchor? Do short-arc quads instead — same target muscle.", watch:"Do not snap into a locked knee. Controlled straightening only." },
+  { id:"s2s", n:"Sit-to-Stand", cat:"Strength", pos:"Sturdy chair, no wheels", dose:"3 × 6–10", ph:2,
+    why:"The most functional leg strength exercise there is, and the one that predicts independence best. It builds quads and glutes together in the exact pattern you use fifty times a day.",
+    cues:["Feet flat, hips-width, heels under the knees.","Nose over toes — lean the chest forward, then drive up through the heels.","Sit back down SLOWLY — 3 counts. The lowering is the real work.","Chair height sets the difficulty."],
+    mod:"Too hard? Add a firm cushion to raise the seat, or push off the armrests. Phase 3: lower chair, arms crossed on chest.", watch:"Knees should track over the 2nd toe, not fall inward. Stop if the knee pain climbs past 4/10." },
+  { id:"stepup", n:"Low Step-Up (4-inch step)", cat:"Strength", pos:"Low step, handrail", dose:"2 × 8 each leg", ph:3,
+    why:"Loads one leg at a time in a shallow, knee-friendly range and forces the hip stabilizers to work under real body weight. Reserve for Phase 3 when the base is built.",
+    cues:["Start with a 4-inch step. Not a full stair.","ALWAYS a handrail or wall within reach.","Push through the whole foot of the stepping leg, do not push off the back toe.","Step down slowly and quietly — quiet means controlled."],
+    mod:"Not confident on your feet? Skip this permanently and do extra sit-to-stands instead. There is no shame in that trade.", watch:"Neuropathy makes step height hard to judge. Always look at the step." },
+  { id:"wallsit", n:"Supported Mini Wall Sit", cat:"Strength", pos:"Back against wall", dose:"3 × 15–20 sec", ph:3,
+    why:"An isometric quad builder with the wall carrying your upper body. Shallow angle only — deep wall sits load an arthritic kneecap hard.",
+    cues:["Slide down ONLY to a shallow bend — about 30 degrees. Nowhere near 90.","Feet well out in front so the knees never pass the toes.","Breathe out loud through the hold — no breath holding.","Push through the heels to come up."],
+    mod:"Place a stability ball behind your back to make it smoother.", watch:"Kneecap ache during or after = you went too deep. Halve the depth." },
+
+  // ---------- CALF, FOOT & NEUROPATHY ----------
+  { id:"seatcalf", n:"Seated Calf Raise", cat:"Foot", pos:"Seated, feet flat", dose:"3 × 15–20", ph:1,
+    why:"Your calf pump, trained with zero knee load. Every rep physically squeezes fluid up out of the lower leg. This is both strength and drainage for lipedema and neuropathy at once.",
+    cues:["Feet flat, knees over ankles.","Push the balls of the feet down and lift the heels as high as they go.","Hold 2 seconds at the top, lower slowly.","Add a book on the thighs for resistance in Phase 2."],
+    mod:"Do this at every commercial break, at your desk, in the car as a passenger.", watch:"None. This is one of your safest and highest-value moves." },
+  { id:"standcalf", n:"Standing Heel Raise (counter support)", cat:"Foot", pos:"Standing at counter", dose:"3 × 10–15", ph:2,
+    why:"The loaded calf pump. Standing puts body weight through the calf, which builds more muscle and moves far more fluid than the seated version.",
+    cues:["Fingertips on the counter for balance only.","Rise onto the balls of the feet, hold 2, lower over 3 counts.","Keep the weight even across all the toes, not rolled to the outside.","Knees stay soft and straight."],
+    mod:"One leg at a time in Phase 3 — but keep both hands on the counter.", watch:"Numb feet make you roll outward without knowing. Watch your feet in a mirror or look down." },
+  { id:"toescrunch", n:"Towel Scrunches", cat:"Foot", pos:"Seated, towel on floor", dose:"2 × 10 each foot", ph:1,
+    why:"The small muscles inside your foot are the first casualties of neuropathy, and when they go, the arch flattens and balance degrades. This keeps them alive.",
+    cues:["Flat towel under a bare foot on a smooth floor.","Scrunch the towel toward you using only the toes.","Then push it back out by spreading the toes.","Slow — quality beats speed here."],
+    mod:"No towel? Pick up marbles or crumple a paper towel.", watch:"This is the one exercise done barefoot, and only seated on a clean floor. Inspect the feet afterward." },
+  { id:"toespread", n:"Toe Spreads & Lifts", cat:"Foot", pos:"Seated", dose:"2 × 10", ph:1,
+    why:"Restores conscious control of toes that have gone quiet. Being able to feel and move them is direct nerve-mapping practice for your brain.",
+    cues:["Lift all ten toes, keeping the balls of the feet down. Hold 3.","Then lift only the big toe, keeping the others down. Then the reverse.","Then spread the toes wide apart.","If a toe will not move, keep trying to move it — the intent still counts."],
+    mod:"Use your hands to move the toes into position first, then try again alone.", watch:"Cramping is normal at first. Shake it out and continue." },
+  { id:"shortfoot", n:"Foot Doming (Short Foot)", cat:"Foot", pos:"Seated, foot flat", dose:"3 × 8, hold 5 sec", ph:2,
+    why:"Rebuilds the arch actively. A supported arch changes how force travels up into the knee, which makes it an arthritis exercise as much as a foot exercise.",
+    cues:["Foot flat, toes relaxed and LONG — do not curl them.","Pull the ball of the foot toward the heel to lift the arch, like a small dome.","Toes stay flat on the floor the whole time.","Hold 5, release fully."],
+    mod:"Progress to doing it while standing, holding a counter.", watch:"Toes curling means you are cheating with the wrong muscles." },
+  { id:"footroll", n:"Ball Roll Under the Foot", cat:"Foot", pos:"Seated", dose:"60 sec each foot", ph:1,
+    why:"Sensory input. Rolling a textured ball under a numb foot floods the nervous system with signal, which improves how well your brain knows where the foot is.",
+    cues:["Firm ball or frozen water bottle under the arch.","Light-to-moderate pressure, roll heel to toe slowly.","Close your eyes and try to describe what you feel."],
+    mod:"Frozen bottle is better on days the burning is loud.", watch:"Look at the skin afterward. Do not use anything sharp or hard enough to bruise." },
+
+  // ---------- BALANCE / PROPRIOCEPTION ----------
+  { id:"balfeet", n:"Feet-Together Stand", cat:"Balance", pos:"At counter", dose:"3 × 20–30 sec", ph:1,
+    why:"Neuropathy steals the position sense in your feet, so your balance system has to relearn using vision and hips. This is the safe entry point.",
+    cues:["Counter in front of you, hands hovering just above it.","Feet touching side by side, eyes forward on a fixed point.","When 30 seconds is easy, try 2 seconds with eyes closed — hands ON the counter."],
+    mod:"Stand in a doorway so both sides are catchable.", watch:"Never do balance work alone in an unsafe space. Corner of a counter is ideal." },
+  { id:"baltandem", n:"Semi-Tandem / Tandem Stand", cat:"Balance", pos:"At counter", dose:"3 × 20 sec each side", ph:2,
+    why:"Narrowing your base forces the hip and ankle strategies to work. This is what buys you the ability to catch yourself when you trip on a curb you did not feel.",
+    cues:["Semi-tandem first: one foot half a step ahead, heel beside the other big toe.","Tandem is full heel-to-toe. Only when semi is solid.","Fingertips on the counter. Look at one fixed spot.","Switch which foot leads."],
+    mod:"Stay at semi-tandem indefinitely if tandem feels unsafe. That is a legitimate endpoint.", watch:"Do not close your eyes in tandem stance. That is a fall waiting to happen with neuropathy." },
+  { id:"weightshift", n:"Controlled Weight Shifts", cat:"Balance", pos:"At counter", dose:"2 × 10 each direction", ph:1,
+    why:"Teaches you to sense where your center of mass is when your feet cannot tell you. Practical, direct fall prevention.",
+    cues:["Feet hip-width, hands on the counter.","Shift slowly side to side, feeling the pressure move from one foot to the other.","Then forward and back — toward the toes, then the heels.","Slow enough that you could stop anywhere."],
+    mod:"Verbalize where the weight is. Saying it out loud sharpens the awareness.", watch:"Small ranges. You are training sensation, not stretching." },
+  { id:"march", n:"Supported Marching", cat:"Balance", pos:"At counter", dose:"2 × 20 steps", ph:2,
+    why:"Single-leg stance time in a controlled dose, plus a hip flexor and drainage benefit from the leg lift. This is walking, decomposed and made safe.",
+    cues:["Both hands on the counter.","Lift one knee to hip height (or as high as comfortable), hold 1, lower.","Slow and deliberate — do not jog it.","Stand tall, no hunching."],
+    mod:"Seated marching is a legitimate substitute on sore-knee days.", watch:"Stop if the standing knee starts to ache." },
+
+  // ---------- CARDIO ----------
+  { id:"pool", n:"Aquatic Walking (chest-deep)", cat:"Cardio", pos:"Pool", dose:"15–30 min", ph:1,
+    why:"The single best exercise for your exact combination. Water pressure compresses the legs and drives fluid out of lipedema tissue, buoyancy removes most of the load from arthritic knees, and if your balance fails there is nothing to fall onto. Nothing else does all three.",
+    cues:["Chest-deep is the sweet spot — enough pressure, enough unloading.","Walk forward, then backward, then sideways in both directions.","Big heel-to-toe steps, tall posture, do not shuffle.","Cooler water (83–88°F) — hot pools worsen swelling."],
+    mod:"No pool? A recumbent bike is your substitute, though it does less for fluid.", watch:"Pool shoes, always. Neuropathic feet plus rough pool floors is how cuts happen you never feel." },
+  { id:"poolkick", n:"Pool Wall Flutter Kicks", cat:"Cardio", pos:"Pool, holding the wall", dose:"3 × 30–45 sec", ph:2,
+    why:"Continuous leg movement against water resistance with zero joint compression — a strong drainage and endurance stimulus that an arthritic knee simply cannot get on land.",
+    cues:["Hold the wall or a kickboard, body horizontal.","Small fast flutter from the hips, legs mostly straight.","Point and flex the toes alternately for extra ankle work."],
+    mod:"Sit on a pool step and kick if floating is uncomfortable.", watch:"Calf cramp — stop, flex the foot, and hydrate." },
+  { id:"bike", n:"Stationary Bike (recumbent preferred)", cat:"Cardio", pos:"Recumbent or upright bike", dose:"10 → 25 min, light resistance", ph:1,
+    why:"Builds quads to protect the knees, moves the calf pump continuously, and needs no balance at all. The most reliable land cardio for this combination of conditions.",
+    cues:["Seat position: the knee stays slightly bent at full extension. Never fully straight, never deeply bent.","LOW resistance, higher cadence — spinning, not grinding.","Start at 10 minutes and add 2–3 minutes per week.","Recumbent puts even less strain on the knee and the back."],
+    mod:"Under-desk pedal machine works while seated on the couch.", watch:"Knee pain during pedaling almost always means the seat is too low. Raise it first before you quit." },
+  { id:"ube", n:"Seated Arm Cycling / Upper Body Work", cat:"Cardio", pos:"Seated", dose:"10–15 min", ph:1,
+    why:"Your cardio insurance policy. On days when the knees are flared or the feet are burning, this keeps your heart, your routine, and your momentum intact without touching the legs.",
+    cues:["Arm ergometer, light dumbbells, or resistance bands — anything continuous.","Keep the legs elevated while you do it and you drain at the same time.","Steady pace where you can talk but not sing."],
+    mod:"Seated punches, band rows, and overhead presses in a circuit work fine.", watch:"None specific. This is your flare-day fallback." },
+  { id:"walk", n:"Short Walk Intervals", cat:"Cardio", pos:"Flat, even, familiar ground", dose:"3 × 5 min, or as tolerated", ph:2,
+    why:"Walking is worth keeping if you can do it comfortably — but broken into short blocks so the knees and the feet never accumulate enough load to flare.",
+    cues:["Flat, even, well-lit, familiar. No gravel, no uneven grass.","Supportive shoes, always, with your compression on.","Break it up: 5 minutes, sit, 5 minutes. Three short walks beat one long one for your joints.","Check the feet when you take the shoes off."],
+    mod:"Mall or grocery-store laps in bad weather — climate controlled with places to sit.", watch:"Never walk in bare feet or thin sandals. A pebble you cannot feel becomes a wound you did not notice." },
+
+  // ---------- COOL DOWN ----------
+  { id:"legsup", n:"Legs Up the Wall", cat:"Cool", pos:"Lying, legs vertical on a wall", dose:"5–15 min", ph:1,
+    why:"Passive drainage using gravity alone. Ending every session here means the fluid your muscles just mobilized actually leaves the leg instead of settling back down.",
+    cues:["Buttocks close to the wall, legs resting up it. A pillow under the hips helps.","Do slow diaphragmatic breathing the whole time — that is what pulls the fluid onward.","Add ankle pumps for the last minute."],
+    mod:"Legs on a couch seat or a stack of pillows if a wall is awkward. Any elevation above the heart counts.", watch:"Tingling in the feet — bend the knees slightly or come down. Do not push through numbness that is new." },
+  { id:"hamstretch", n:"Supine Hamstring Stretch (strap)", cat:"Cool", pos:"Lying, strap around foot", dose:"3 × 30 sec each leg", ph:1,
+    why:"Tight hamstrings hold the knee in a slight bend all day, which loads the joint constantly and weakens the quad. Length here directly reduces knee pain.",
+    cues:["Strap, belt, or towel around the arch of the foot.","Leg as straight as comfortable, pull gently until you feel a stretch behind the thigh.","Other knee bent, foot flat, to protect the back.","Breathe out into the stretch. No bouncing."],
+    mod:"Bend the stretching knee slightly — you still get the benefit.", watch:"Sharp or electric sensations down the back of the leg mean stop. That is nerve, not muscle." },
+  { id:"calfstretch", n:"Gentle Calf Stretch", cat:"Cool", pos:"Seated with strap, or at wall", dose:"3 × 20–30 sec each", ph:1,
+    why:"A tight calf forces the foot and knee into compensations that increase joint load. Keeping length preserves your walking mechanics.",
+    cues:["Seated with a strap is safest: leg out, strap around the ball of the foot, pull the toes toward you.","Gentle and steady. Never bounce.","Feel a stretch in the calf belly, not a pull in the arch."],
+    mod:"Standing wall version, back foot flat, both hands on the wall.", watch:"With neuropathy you may not feel a stretch reach its limit. Go by the tape-measure rule: a gentle pull, not a maximum one." },
+  { id:"hipflex", n:"Half-Kneeling Hip Flexor Stretch", cat:"Cool", pos:"Half kneeling on a pad", dose:"2 × 30 sec each side", ph:2,
+    why:"Sitting shortens the front of the hip, which tips the pelvis and changes how the knee tracks. Opening it improves your stride and takes strain off the knee.",
+    cues:["Thick cushion or folded blanket under the down knee — always.","Squeeze the buttock of the kneeling side FIRST, then shift gently forward.","Tall spine, ribs down. Small movement.","Hold a chair for support getting down and up."],
+    mod:"Standing version: hold a counter, step one foot back, squeeze that glute, small shift forward. Use this if kneeling hurts your knee — it usually will.", watch:"Kneeling on an arthritic knee is often a no. Use the standing version without hesitation." },
+  { id:"selfmld", n:"Self Lymph Drainage — Leg Sequence", cat:"Cool", pos:"Lying, legs elevated", dose:"5–8 min", ph:1,
+    why:"Manual drainage worked from the top down clears the path before you push fluid into it. Doing it after exercise, while the tissue is warm, is when it works best.",
+    cues:["ALWAYS drain top-down: neck, then belly breathing, then groin, then thigh, then knee, then calf, then foot.","Feather-light. Stretch the skin, release, repeat. Never slide or rub.","Slow — about one stroke per second.","Work each area 8–10 times before moving down."],
+    mod:"A certified lymphedema therapist can teach you a sequence built for your body. Worth one visit even if you self-manage after.", watch:"Skip entirely over any area that is red, hot, or swollen suddenly — that can be infection, and massage would spread it." },
+];
+
+const CATS = ["Prime","Strength","Foot","Balance","Cardio","Cool"];
+const CATMETA = {
+  Prime:{icon:"🌊",desc:"Open the drainage pathways and warm the joints. Always first."},
+  Strength:{icon:"💪",desc:"Build the muscle sleeve that decompresses your knees."},
+  Foot:{icon:"🦶",desc:"Calf pump, intrinsic foot muscles, and nerve input."},
+  Balance:{icon:"⚖️",desc:"Retrain position sense that neuropathy has dulled."},
+  Cardio:{icon:"🚴",desc:"Low-impact conditioning that never pounds the joints."},
+  Cool:{icon:"🧘",desc:"Elevate, drain, lengthen. Never skip this part."},
+};
+const byId = id => EX.find(e => e.id === id);
+
+/* ============================================================
+   SESSIONS & 8-WEEK PROGRAM
+   ============================================================ */
+const SESSIONS = {
+  strengthA:{ n:"Lower Strength A", mins:28, icon:"💪", focus:"Quads and knee stability",
+    blocks:[ {l:"Prime (6 min)",ids:["breath","groin","ankpump","heelslide"]},
+             {l:"Strength (16 min)",ids:["quadset","slr","sac","bridge","s2s","wallsit"]},
+             {l:"Close (6 min)",ids:["legsup","hamstretch","calfstretch"]} ] },
+  strengthB:{ n:"Lower Strength B", mins:28, icon:"🏋️", focus:"Hips, glutes and knee tracking",
+    blocks:[ {l:"Prime (6 min)",ids:["breath","groin","ankpump","kneerock"]},
+             {l:"Strength (16 min)",ids:["bridge","clamband","hipabd","hamcurl","tke","stepup"]},
+             {l:"Close (6 min)",ids:["legsup","hipflex"]} ] },
+  cardioPool:{ n:"Water Session", mins:35, icon:"🏊", focus:"Drainage plus cardio, zero impact",
+    blocks:[ {l:"Prime (5 min)",ids:["breath","nodes"]},
+             {l:"Pool (25 min)",ids:["pool","poolkick"]},
+             {l:"Close (5 min)",ids:["legsup"]} ] },
+  cardioBike:{ n:"Bike + Feet", mins:30, icon:"🚴", focus:"Land cardio and foot control",
+    blocks:[ {l:"Prime (5 min)",ids:["breath","ankpump","ankcircle"]},
+             {l:"Cardio (15 min)",ids:["bike","walk"]},
+             {l:"Feet & Balance (7 min)",ids:["seatcalf","toescrunch","balfeet"]},
+             {l:"Close (3 min)",ids:["legsup"]} ] },
+  footBalance:{ n:"Feet & Balance", mins:22, icon:"🦶", focus:"Nerve input, calf pump, fall prevention",
+    blocks:[ {l:"Prime (4 min)",ids:["breath","ankcircle"]},
+             {l:"Feet (10 min)",ids:["seatcalf","standcalf","toescrunch","toespread","shortfoot","footroll"]},
+             {l:"Balance (6 min)",ids:["weightshift","balfeet","baltandem","march"]},
+             {l:"Close (2 min)",ids:["legsup","calfstretch"]} ] },
+  recovery:{ n:"Lymph & Recovery", mins:18, icon:"🌊", focus:"Pure drainage — an active rest day",
+    blocks:[ {l:"Open the pathways (6 min)",ids:["breath","nodes","groin"]},
+             {l:"Pump (6 min)",ids:["ankpump","seatcalf","heelslide"]},
+             {l:"Drain (6 min)",ids:["selfmld","legsup"]} ] },
+  flare:{ n:"Calm Day (Flare Protocol)", mins:14, icon:"🕊️", focus:"Zero-load. For high-pain days.",
+    blocks:[ {l:"Everything, gently",ids:["breath","nodes","groin","ankpump","quadset","selfmld","legsup"]},
+             {l:"Optional — keeps cardio going without touching the legs",ids:["ube"]} ] },
+  rest:{ n:"Rest & Elevate", mins:10, icon:"🛋️", focus:"Full rest. Elevation only.",
+    blocks:[ {l:"Rest",ids:["breath","legsup"]} ] },
+};
+
+/* Indexed to match Date.getDay(): 0 = Sunday. Strength days are deliberately
+   separated by a cardio or drainage day so the knees never load twice in a row. */
+const WEEK = [
+  { d:"Sun", s:"rest" },       { d:"Mon", s:"strengthA" }, { d:"Tue", s:"cardioBike" },
+  { d:"Wed", s:"recovery" },   { d:"Thu", s:"strengthB" }, { d:"Fri", s:"footBalance" },
+  { d:"Sat", s:"cardioPool" },
+];
+
+const PHASES = [
+  { ph:1, wks:"Weeks 1–2", n:"Calm & Connect", color:"tb",
+    goal:"Prove to your joints and your nerves that movement is safe. Build the habit before you build the load.",
+    dos:["Every exercise at the LOW end of the rep range.","Isometrics only for the knees — quad sets, short arcs, straight leg raises.","No resistance bands yet.","Bike: 10–12 minutes. Pool: 15–20 minutes.","Foot check every single night — this is the habit that matters most.","Log symptoms daily even on rest days. You are building your baseline."],
+    win:"You finish two weeks without a flare and you know what your normal actually looks like on paper." },
+  { ph:2, wks:"Weeks 3–5", n:"Build the Sleeve", color:"tg",
+    goal:"Add real resistance and start building the muscle that takes load off the arthritic knees.",
+    dos:["Add the light loop band: clamshells, terminal knee extensions, hip abduction.","Move to the top of every rep range before you add any weight.","Bike: build to 18–20 minutes. Pool: 25 minutes.","Add standing calf raises and semi-tandem balance.","Sit-to-stand from a lower chair as it gets easier.","Start the slow-lowering (3-count) on everything — that is where strength is made."],
+    win:"Sit-to-stand without pushing off the armrests, and 30 seconds of semi-tandem stance without wobbling." },
+  { ph:3, wks:"Weeks 6–8", n:"Load & Sustain", color:"ty",
+    goal:"Add controlled single-leg load and lock the routine in as something you keep doing forever.",
+    dos:["Ankle weights (1–2 lb) on straight leg raises, if and only if the knees are quiet.","Add low step-ups and mini wall sits — Phase 3 only.","Single-leg heel raises, both hands still on the counter.","Bike: 25 minutes. Pool: 30 minutes.","Re-measure your limbs and compare to Week 1.","Book the PT review and bring your exported report."],
+    win:"You have measurable strength gains on paper and a routine you no longer have to decide about." },
+];
+
+/* Daily foot inspection — the non-negotiable neuropathy habit */
+const FOOTCHECK = [
+  { k:"look", t:"Look at the whole foot", d:"Tops, soles, heels, and between every toe. Use a hand mirror on the floor or your phone camera for the bottoms." },
+  { k:"cuts", t:"Cuts, cracks, blisters, or scrapes", d:"Anything open. You will not necessarily feel it, so this is a visual job, not a sensation job." },
+  { k:"color", t:"Color changes", d:"Redness, dark spots, blue or white patches, or one foot noticeably different from the other." },
+  { k:"warm", t:"Warm or hot spots", d:"Run the back of your hand over both feet. A hot area with redness can be the first sign of infection." },
+  { k:"nails", t:"Nails and calluses", d:"Ingrown edges, thick or discolored nails, calluses building up in one spot — that spot is taking too much pressure." },
+  { k:"swell", t:"Swelling compared to yesterday", d:"Especially swelling on ONE side only, which is a different problem from your usual pattern." },
+  { k:"marks", t:"Marks from socks or compression", d:"Deep indentations that have not faded 20 minutes after removal mean the garment is too tight or has rolled." },
+  { k:"shoes", t:"Shake out your shoes before wearing", d:"Every single time. A pebble or a bunched sock inside a shoe is how a numb foot gets a wound." },
+  { k:"moist", t:"Moisturize (not between the toes)", d:"Dry cracked skin is an entry point for infection. Keep the toe webs dry — moisture there causes breakdown." },
+];
+
+/* ============================================================
+   COMPRESSION — MEASUREMENT LANDMARKS (flat-knit custom, RAL convention)
+   ============================================================ */
+const CIRC = [
+  { c:"cY", n:"Foot / instep", d:"Around the foot, from the base of the heel diagonally over the instep." },
+  { c:"cA", n:"Ankle (narrowest)", d:"The SMALLEST circumference just above the ankle bones. This is the reference point the whole garment gradient is built from — measure it twice." },
+  { c:"cB", n:"Heel base / Achilles", d:"Around the leg where the heel meets the ankle, over the Achilles tendon." },
+  { c:"cB1", n:"Lower calf", d:"Roughly midway between cB and the widest part of the calf." },
+  { c:"cC", n:"Calf (widest)", d:"The LARGEST circumference of the calf. Find it by measuring a few spots and keeping the biggest." },
+  { c:"cD", n:"Below knee", d:"Just below the knee bend, below the bony bump on the shin. This is where a knee-high garment tops out." },
+  { c:"cE", n:"Above knee", d:"About 2 inches / 5 cm above the knee bend, on the lower thigh." },
+  { c:"cF", n:"Mid thigh", d:"Midway between cE and cG." },
+  { c:"cG", n:"Upper thigh", d:"The highest point of the thigh, just below the gluteal fold. This is where a thigh-high tops out." },
+  { c:"cH", n:"Hips (widest)", d:"Around the widest part of the hips and buttocks. Required for pantyhose or capri styles, and it is the number that explains why thigh-highs slide down on a curvy build." },
+  { c:"cT", n:"Waist", d:"At the natural waist. Required for any waist-attached or pantyhose style." },
+];
+const LEN = [
+  { c:"lD", n:"Floor → below knee", d:"From the floor (or the base of the heel) straight up to the cD point. Sets knee-high length." },
+  { c:"lF", n:"Floor → mid thigh", d:"From the floor up to the cF point." },
+  { c:"lG", n:"Floor → upper thigh", d:"From the floor up to the cG point, just under the gluteal fold. Sets thigh-high length — this is the number that standard sizing gets wrong on a tall frame." },
+  { c:"lT", n:"Floor → waist", d:"From the floor to the natural waist. Needed for pantyhose." },
+  { c:"foot", n:"Foot length", d:"Heel to the end of the longest toe. Determines the foot portion sizing." },
+];
+
+const MEASURE_RULES = [
+  "Measure FIRST THING in the morning, before you get out of bed if possible, and definitely before you have been upright for long. Swelling accumulates through the day and an afternoon measurement builds you a garment that is too loose by morning.",
+  "Measure BOTH legs separately and write both down. With lipedema they are rarely identical, and a custom garment is made per limb — that is the whole point of going custom.",
+  "Tape snug against the skin but not compressing it. The tape should sit flat all the way around without denting the tissue.",
+  "Record in centimeters. Every custom manufacturer's order form works in cm, and converting inches introduces rounding errors that matter at this precision.",
+  "Keep the tape perpendicular to the limb — level all the way around, not angled. An angled tape reads too big.",
+  "Take the length measurements standing if you can do so safely, with a wall or counter for support, since that is the position the garment has to fit in.",
+  "Have someone else take the thigh and hip measurements if you can. Bending to reach changes the shape of the tissue you are measuring.",
+  "Re-measure every 6 months, or after any significant weight change, or whenever a garment starts fitting differently. Note the date every time.",
+];
+
+/* ---------- COMPRESSION KNOWLEDGE ---------- */
+const WHY_CUSTOM = [
+  { t:"Standard sizing assumes a proportional limb — yours is not", b:"Off-the-shelf charts are built from a population average where ankle, calf, thigh, and length all scale together. Lipedema does not scale that way: the thigh is disproportionately large relative to the ankle, and the tissue changes shape at the knee and above it. When your measurements land in three different size columns, no single stock size can be correct — one part of the garment will always be too tight and another too loose." },
+  { t:"Tall plus curvy is a length problem AND a ratio problem", b:"On a tall frame the floor-to-gluteal-fold length (lG) exceeds what stock thigh-highs are cut for, so the band sits mid-thigh instead of high thigh — right on the widest part of the lipedema tissue, where it digs in and rolls. Then the hip circumference means a thigh-high has nothing to anchor against, so it migrates down all day. Custom solves both by building the length and the top band to your actual numbers, and by offering waist attachment or capri styles that a stock catalog does not." },
+  { t:"Flat knit, not circular knit — this is the key term to use", b:"Circular knit is the thin, seamless, stretchy stocking most people picture. It is made as a tube and it stretches to fit, which means on a cone-shaped or irregular limb it constricts at the narrow points and creates a tourniquet effect behind the knee and at the ankle. Flat knit is knitted as a flat panel and sewn with a seam, made to individual measurements, with a stiffer, thicker fabric that holds its shape, does not cut into skin folds, and provides higher working pressure with lower resting pressure. Flat knit is the standard of care for lipedema. If a supplier tries to sell you circular knit for lipedema, that is the moment to push back." },
+  { t:"A rolled or dug-in garment is worse than none at all", b:"When a too-short or too-tight garment rolls at the top, it becomes a tight band around the thigh that blocks drainage above it and forces fluid to pool below. That is not just uncomfortable — it actively worsens the condition it was meant to treat. This is the clinical argument your PT can put in writing, and it is more persuasive to an insurer than 'it doesn't fit well.'" },
+];
+
+const CLASSES = [
+  { us:"15–20 mmHg", ral:"—", use:"Very mild. Usually a starting point for people who cannot tolerate more yet, or for a first trial.", fit:"Sometimes used at the start with lipedema when pain and tenderness are high." },
+  { us:"20–30 mmHg", ral:"Class 1 (18–21)", use:"The most common starting point for lipedema. Meaningful support that most people can actually wear all day.", fit:"Frequently the right answer, especially in flat knit where the fabric stiffness does work that the mmHg number alone does not capture." },
+  { us:"30–40 mmHg", ral:"Class 2 (23–32)", use:"Standard for lymphedema and for lipedema with significant swelling, once tolerance is established.", fit:"A common target, but usually stepped up to rather than started at." },
+  { us:"40–50 mmHg", ral:"Class 3 (34–46)", use:"Advanced lymphedema. Rarely a starting point.", fit:"Generally too much for painful lipedema tissue and hard to don with any hand strength limits." },
+];
+
+const NEURO_COMPRESSION = [
+  "Ask for arterial screening (an ABI — ankle-brachial index) before starting compression. This is standard of care and it is especially important with peripheral neuropathy, because compression on a limb with poor arterial supply is genuinely dangerous. If nobody has offered it, request it by name.",
+  "You cannot rely on 'it feels too tight' as your warning system. Reduced sensation means a garment can be doing damage while feeling fine. Your eyes have to do the job your nerves are not doing.",
+  "For the first week with any new garment: take it off and inspect at 30 minutes, at 2 hours, and at the end of the day. After that, inspect every time you remove it — permanently.",
+  "Stop and call your clinician for: indentations that do not fade within 20 minutes, any blister or open area, blanched (white) or blue toes, toes noticeably colder than the rest of the leg, or new or worsened numbness that started with the garment.",
+  "Never sleep in a daytime compression garment unless you have been specifically told to. Night garments are a different, softer construction for exactly this reason.",
+  "Donning gloves are not optional with flat knit — the fabric is stiff and gripping it barehanded is how you tear the garment or your skin. Ask the fitter to include them, and ask about a donning frame or slide aid too.",
+];
+
+const GARMENT_TYPES = [
+  { n:"Flat-knit custom thigh-high", u:"Your primary daytime garment for lipedema of the thighs.", note:"With your hip-to-thigh ratio, ask specifically about a wider silicone top band, a hip attachment, or a waist attachment so it does not migrate." },
+  { n:"Flat-knit custom capri / bermuda", u:"Covers thigh and knee, stops above the ankle.", note:"Worth asking about — many people with thigh-dominant lipedema find this more wearable and easier to don than a full thigh-high." },
+  { n:"Flat-knit custom pantyhose / waist attachment", u:"Full leg with a waistband anchor.", note:"The real fix for garments that slide down on a curvy build. Requires the cH and cT measurements." },
+  { n:"Adjustable Velcro wrap (e.g. juxtafit, ReadyWrap style)", u:"Non-elastic wrap with adjustable straps.", note:"Excellent for days the knees are flared or your hands are tired, and for fluctuating swelling. Far easier to put on than flat knit. A very reasonable thing to request alongside the stockings, not instead of them." },
+  { n:"Night garment", u:"Soft, low-stretch, worn during sleep.", note:"Different construction from daytime. Covered separately under Medicare's rules, at a different replacement frequency." },
+  { n:"Knee-high flat knit", u:"Below-knee only.", note:"Useful as a second garment on low-symptom days, and helpful for the calf neuropathy and the calf pump, but it does not treat the thighs." },
+];
+
+const MAKERS = [
+  { n:"Juzo", p:"Expert / Expert Strong flat knit", note:"Wide custom range, well established for lipedema." },
+  { n:"medi", p:"mediven 550 flat knit", note:"Custom leg garments, broad color and style options." },
+  { n:"Sigvaris", p:"Advance / custom flat knit", note:"Custom program with cotton-blend options." },
+  { n:"Jobst (Essity)", p:"Elvarex / Elvarex Plus flat knit", note:"Long-standing flat-knit line for lymphatic conditions." },
+  { n:"Lohmann & Rauscher", p:"Solaris ReadyWrap, custom flat knit", note:"Also makes the adjustable wrap alternatives." },
+  { n:"circaid (medi)", p:"juxtafit adjustable wraps", note:"The Velcro wrap option — adjustable and much easier to don." },
+];
+
+/* ---------- ADVOCACY TEMPLATES ---------- */
+const LMN = `LETTER OF MEDICAL NECESSITY
+Custom Flat-Knit Gradient Compression Garments, Bilateral Lower Extremities
+
+[Practice letterhead]
+Date: ____________
+
+To: [Insurer name] — Utilization Review / Prior Authorization
+Re: [Patient name] | DOB: __________ | Member ID: __________ | Group #: __________
+
+DIAGNOSES (clinician to confirm and code):
+  - Lipedema, bilateral lower extremities, stage ____   [ICD-10: E88.2x family]
+  - Bilateral primary osteoarthritis of the knee        [ICD-10: M17.0]
+  - Peripheral polyneuropathy, lower extremities        [ICD-10: G62.9 or condition-specific code]
+  - [If applicable] Lymphedema / lipo-lymphedema        [ICD-10: I89.0 or applicable code]
+  NOTE TO CLINICIAN: verify current-year ICD-10 codes with billing. Lipedema-specific
+  E88.2x codes were introduced relatively recently and coverage logic often keys on
+  whether a lymphatic component is documented alongside the lipedema.
+
+ITEM REQUESTED:
+  Custom-made FLAT-KNIT gradient compression garments, bilateral lower extremity,
+  [thigh-high / capri / waist-attached] style, [__] mmHg, quantity ____ per limb,
+  plus donning aids (donning gloves and [frame/slider]).
+  Ready-made (circular-knit, off-the-shelf) garments are NOT appropriate for this
+  patient — clinical rationale below.
+
+CLINICAL HISTORY:
+  [Patient] is a ____-year-old with bilateral lipedema affecting the thighs, with
+  peripheral neuropathy of the calves, feet and toes, and bilateral knee osteoarthritis.
+  Symptoms include ______________________________________________________________
+  (e.g. limb heaviness, tenderness to light touch, easy bruising, progressive
+  disproportion, activity limitation, knee pain with weight bearing).
+  Conservative management to date: _______________________________________________
+  (e.g. supervised physical therapy, exercise program, elevation, manual lymphatic
+  drainage, trial of ready-made compression).
+
+WHY READY-MADE GARMENTS ARE NOT MEDICALLY APPROPRIATE:
+  1. Measurement disproportion. This patient's limb measurements do not fall within a
+     single manufacturer size across the required landmarks. Recorded measurements
+     place the ankle (cA), calf (cC), and thigh (cG) circumferences in different stock
+     size categories, and the floor-to-gluteal-fold length (lG) exceeds the standard
+     length range. No ready-made size can deliver the prescribed gradient across the
+     limb. [Attach the completed measurement sheet.]
+  2. Documented failure of ready-made trial. Off-the-shelf garments [rolled at the
+     proximal band / migrated distally / created a constricting band at ______ /
+     produced skin indentation persisting beyond 20 minutes]. A garment that rolls or
+     bands proximally creates a tourniquet effect that obstructs proximal drainage and
+     worsens distal congestion — it is not a neutral outcome, it is an adverse one.
+  3. Flat-knit construction is clinically indicated. Lipedematous tissue is irregular
+     and lobular with skin folds. Circular-knit fabric stretches to conform and
+     therefore constricts at the narrowest points and cuts into folds. Flat-knit fabric
+     provides the higher stiffness / working pressure and lower resting pressure
+     required to contain this tissue without a tourniquet effect, and is the accepted
+     standard of care for lipedema.
+  4. Sensory impairment raises the risk profile. Peripheral neuropathy of the feet and
+     calves means this patient cannot reliably perceive an improperly fitted garment
+     causing pressure injury. Precise custom fit is therefore a safety requirement,
+     not a comfort preference.
+  5. Functional and orthopedic impact. Adequate compression is required for this
+     patient to tolerate the weight-bearing therapeutic exercise prescribed for
+     bilateral knee osteoarthritis. Without it, limb heaviness and pain limit exercise
+     tolerance, which accelerates quadriceps deconditioning and knee OA progression.
+
+EXPECTED OUTCOMES:
+  Reduced limb volume and heaviness; improved exercise tolerance and adherence to the
+  prescribed therapeutic exercise program; reduced knee pain secondary to improved
+  activity capacity; prevention of progression to lipo-lymphedema; prevention of skin
+  breakdown and cellulitis.
+
+QUANTITY JUSTIFICATION:
+  Garments must be washed daily to maintain compression integrity and skin hygiene.
+  A minimum of ____ garments per limb is required so that a clean, functional garment
+  is available every day. Flat-knit garments lose therapeutic compression with wear and
+  require replacement approximately every ____ months.
+
+ATTACHMENTS:
+  [ ] Completed custom measurement sheet, both limbs, dated
+  [ ] Photographs documenting fit failure of ready-made trial
+  [ ] Physical therapy notes and plan of care
+  [ ] Prior authorization form, if required
+  [ ] Prescription
+
+I certify that the above is medically necessary for the treatment of this patient's
+diagnosed condition.
+
+_______________________________       _______________________________
+[Clinician name, credentials]          NPI: ________  Date: __________`;
+
+const APPEAL = `INSURANCE APPEAL — DENIAL OF CUSTOM COMPRESSION GARMENTS
+
+Date: ____________
+To: [Insurer] Appeals Department
+Re: [Patient name] | Member ID: __________ | Claim / Auth #: __________
+    Denial date: __________  |  Stated denial reason: ____________________________
+
+I am formally appealing the denial referenced above and requesting a full review.
+
+1. WHAT WAS DENIED AND WHY THAT REASON DOES NOT APPLY
+   The denial states: "____________________________________________________________"
+   This is inconsistent with the clinical record for the following reasons:
+   [Use the matching response from the denial playbook.]
+
+2. THE ITEM IS NOT A CONVENIENCE OR COMFORT ITEM
+   Gradient compression is the primary conservative treatment for lipedema. It is
+   prescribed by my treating clinician, fitted by a certified fitter, and required for
+   me to participate in the physical therapy program this plan is already covering.
+   Denying the garment while covering the therapy denies the therapy its effect.
+
+3. READY-MADE GARMENTS HAVE BEEN TRIED AND HAVE FAILED
+   Documented trial: ____________________________________________________________
+   Failure mode: ready-made garments [rolled / migrated / constricted at ______ /
+   left indentations persisting past 20 minutes]. My measurements span ____ different
+   manufacturer stock sizes across the required landmarks and my limb length exceeds
+   the standard range. The enclosed measurement sheet documents this numerically.
+   A garment that bands proximally is not merely ineffective — it obstructs proximal
+   drainage and worsens the condition being treated.
+
+4. ADDITIONAL SAFETY FACTOR
+   I have peripheral neuropathy of the feet and calves with reduced protective
+   sensation. I cannot reliably feel a poorly fitted garment causing pressure injury.
+   Precise fit is a safety requirement in my case.
+
+5. COST OF DENIAL
+   Untreated lipedema progresses, and progression to lipo-lymphedema brings cellulitis
+   admissions, wound care, and mobility loss — all substantially more expensive than
+   the garments requested here.
+
+ENCLOSED:
+   [ ] Letter of medical necessity from [clinician]
+   [ ] Complete measurement sheet, both limbs, dated
+   [ ] Photographs of ready-made garment fit failure
+   [ ] Physical therapy plan of care and progress notes
+   [ ] Certified fitter's assessment
+   [ ] The original denial letter
+
+I request a written decision within the timeframe required by my plan, and I am
+requesting a peer-to-peer review with my treating clinician. If this appeal is denied,
+please provide the specific plan-language basis for the denial and complete written
+instructions for external independent review.
+
+Sincerely,
+_______________________________   Date: __________
+[Patient name] | Phone: __________ | Email: __________`;
+
+const DENIALS = [
+  { d:"“Not medically necessary”", r:"Ask for the specific clinical criteria they applied, in writing. Then have your clinician address each criterion by name in the LMN. Most denials at this stage are documentation gaps, not real coverage exclusions — the note usually failed to state why ready-made will not work, which is exactly what the measurement sheet proves." },
+  { d:"“Ready-made garment is available”", r:"This is the one your measurement sheet answers directly. Show the numbers landing in different stock size columns and the length exceeding the standard range. Add photographs of the ready-made trial rolling or digging in. A numeric argument beats a descriptive one every time." },
+  { d:"“Compression garments are excluded / not a covered benefit”", r:"Ask for the exact plan language and the page it appears on. Then check whether coverage exists under a different category — DME, prosthetics and orthotics, or a lymphedema-specific provision. If you have a documented lymphatic component (lipo-lymphedema), that pathway may cover what a lipedema-only claim does not. Ask your clinician directly whether a lymphatic component is documented in your chart." },
+  { d:"“Lipedema is not a covered diagnosis”", r:"This is common and it is why the lymphatic question matters so much. Many plans cover compression for lymphedema but not for lipedema alone. Ask your clinician whether your presentation includes a lymphatic component and whether that is documented. Do not coach anyone toward a diagnosis you do not have — just make sure what IS true about your legs is actually written in the chart." },
+  { d:"“Quantity exceeds allowance”", r:"Justify per-garment: daily washing is required to preserve compression and skin hygiene, so you need enough garments that a clean one is available every day. Ask the insurer what their per-period allowance actually is, and have the supplier bill within it rather than getting the whole claim denied." },
+  { d:"“Supplier is out of network / not enrolled”", r:"This is a solvable logistics denial, not a clinical one. Ask the insurer for a list of in-network suppliers who provide CUSTOM FLAT-KNIT garments specifically — not just any compression supplier. If none exists in your area, request a network gap exception in writing." },
+];
+
+const MEDICARE_NOTES = [
+  "The Lymphedema Treatment Act changed Medicare coverage for compression garments, with the benefit taking effect January 1, 2024. It established Medicare coverage of gradient compression garments and supplies for people with a lymphedema diagnosis — including both daytime and nighttime garments, and both standard and custom.",
+  "The distinction that matters for you: this benefit is keyed to a LYMPHEDEMA diagnosis. Lipedema on its own is frequently not covered under it. If your legs have a lymphatic component (lipo-lymphedema), whether that is documented in your chart may determine which coverage pathway is available. Ask your clinician directly what is written, and ask why.",
+  "Medicare's published allowance under this benefit runs roughly to three daytime garments per affected limb every six months, and two nighttime garments per limb every two years. Commercial plans set their own limits and many mirror Medicare's.",
+  "What a claim generally needs: a prescription from your treating practitioner, a documented qualifying diagnosis, a medical necessity note, fitting by a qualified fitter, and a supplier enrolled with your payer.",
+  "Coverage rules and allowances change year to year. Treat everything on this page as the questions to ask, not as the final answer — confirm current specifics with your plan and your supplier before you order.",
+];
+
+const FITTER_QS = [
+  "Are you certified to fit custom flat-knit garments, and how many lipedema patients do you fit in a typical month?",
+  "Which manufacturers' custom programs do you work with, and which would you choose for my shape and why?",
+  "Will you take the measurements yourself, in the morning, and will you measure both legs separately?",
+  "My thigh-highs slide down. What are my anchoring options — wide silicone band, hip attachment, waist attachment, or a capri or pantyhose style?",
+  "Which compression class are you recommending for me, and what is the reasoning given that lipedema tissue is painful to pressure?",
+  "Has anyone checked my arterial circulation (an ABI) before we start compression? I have peripheral neuropathy and I want that ruled out first.",
+  "What donning aids come with this, and can you watch me put the garment on and take it off before I leave?",
+  "How long is the fabrication turnaround, and what is the remake policy if the fit is wrong when it arrives?",
+  "Will you bill my insurance directly, what HCPCS code are you billing, and can I have a written quote for my out-of-pocket cost before you order?",
+  "If insurance denies it, will you supply the fitter's assessment and the documentation I need for an appeal?",
+];
+
+/* ============================================================
+   STORAGE + HELPERS
+   ============================================================ */
+const KEY = "mbc_legs_v1";
+const loadState = () => { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch(e){ return null; } };
+const saveState = d => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){} };
+const iso = (d = new Date()) => {
+  const t = new Date(d.getTime() - d.getTimezoneOffset()*60000);
+  return t.toISOString().slice(0,10);
+};
+const pretty = s => { const [y,m,d] = s.split("-"); return new Date(y, m-1, d).toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}); };
+const daysBetween = (a,b) => Math.round((new Date(b) - new Date(a)) / 86400000);
+const DEFAULT_STATE = { start: iso(), logs:{}, done:{}, feet:{}, measures:[], comp:{ cls:"", style:"", maker:"", fitter:"", notes:"", steps:{} }, prefs:{ pool:true } };
+
+const SCALES = [
+  { k:"kneeL", n:"Left knee pain",         lo:"none", hi:"severe", inv:true },
+  { k:"kneeR", n:"Right knee pain",        lo:"none", hi:"severe", inv:true },
+  { k:"heavy", n:"Leg heaviness / tightness", lo:"light", hi:"heavy", inv:true },
+  { k:"tender",n:"Thigh tenderness to touch", lo:"none", hi:"severe", inv:true },
+  { k:"burn",  n:"Burning / tingling in feet", lo:"none", hi:"severe", inv:true },
+  { k:"swell", n:"Visible swelling",       lo:"none", hi:"marked", inv:true },
+  { k:"energy",n:"Energy",                 lo:"empty",hi:"good",  inv:false },
+];
+
+/* Tiny dependency-free line chart */
+function Spark({ series, color, height=54, inv }) {
+  if (!series.length) return <div style={{fontSize:11.5,color:"var(--muted)",padding:"14px 0"}}>No data logged yet.</div>;
+  const w = 300, h = height, pad = 4;
+  const max = 10, min = 0;
+  const step = series.length > 1 ? (w - pad*2) / (series.length - 1) : 0;
+  const pts = series.map((v,i) => [pad + i*step, h - pad - ((v - min)/(max - min)) * (h - pad*2)]);
+  const path = pts.map((p,i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  const area = path + " L" + pts[pts.length-1][0].toFixed(1) + " " + (h-pad) + " L" + pad + " " + (h-pad) + " Z";
+  return (
+    <svg viewBox={"0 0 " + w + " " + h} width="100%" height={h} preserveAspectRatio="none" style={{display:"block"}}>
+      <path d={area} fill={color} opacity="0.13"/>
+      <path d={path} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round"/>
+      {pts.map((p,i) => <circle key={i} cx={p[0]} cy={p[1]} r="2.4" fill={color}/>)}
+    </svg>
+  );
+}
+
+function Slider({ label, value, onChange, lo, hi }) {
+  return (
+    <div style={{marginBottom:13}}>
+      <div className="rowb" style={{marginBottom:3}}>
+        <span style={{fontSize:12.5,fontWeight:500,color:"var(--forest)"}}>{label}</span>
+        <span style={{fontFamily:"'Playfair Display',serif",fontSize:17,color:"var(--amber)"}}>{value}</span>
+      </div>
+      <input type="range" min="0" max="10" value={value} onChange={e => onChange(+e.target.value)}/>
+      <div className="rowb" style={{fontSize:10,color:"var(--muted)",marginTop:-3}}><span>0 · {lo}</span><span>10 · {hi}</span></div>
+    </div>
+  );
+}
+
+function ExCard({ ex, open, toggle, checked, onCheck }) {
+  return (
+    <div className="exrow">
+      <div className="exhd" onClick={toggle}>
+        <div style={{display:"flex",gap:9,alignItems:"flex-start",minWidth:0}}>
+          {onCheck && <input type="checkbox" checked={!!checked} onChange={e => { e.stopPropagation(); onCheck(); }}
+            onClick={e => e.stopPropagation()} style={{width:17,height:17,marginTop:2,accentColor:"var(--forest)",flexShrink:0}}/>}
+          <div style={{minWidth:0}}>
+            <div className="exname" style={checked ? {textDecoration:"line-through",opacity:0.55} : null}>{ex.n}</div>
+            <div className="exdose">{ex.dose} · {ex.pos}</div>
+          </div>
+        </div>
+        <span style={{color:"var(--muted)",fontSize:16,flexShrink:0,lineHeight:1}}>{open ? "−" : "+"}</span>
+      </div>
+      {open && (
+        <div className="exbody">
+          <div className="exlabel">Why this one</div>
+          <div>{ex.why}</div>
+          <div className="exlabel">How to do it</div>
+          <ul>{ex.cues.map((c,i) => <li key={i}>{c}</li>)}</ul>
+          <div className="exlabel">Make it easier or harder</div>
+          <div>{ex.mod}</div>
+          <div className="exlabel">Watch for</div>
+          <div style={{color:"var(--rose)"}}>{ex.watch}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const TABS = [
+  { id:"today",   label:"Today",          icon:"🌿" },
+  { id:"session", label:"Do a Session",   icon:"▶️" },
+  { id:"program", label:"8-Week Program", icon:"📆" },
+  { id:"library", label:"Exercise Library",icon:"📚" },
+  { id:"track",   label:"Symptom Tracker",icon:"📈" },
+  { id:"feet",    label:"Foot Check",     icon:"🦶" },
+  { id:"comp",    label:"Compression 101",icon:"🧦" },
+  { id:"measure", label:"Measurement Sheet",icon:"📏" },
+  { id:"advocate",label:"Get It Approved",icon:"📄" },
+  { id:"report",  label:"Report for PT",  icon:"📤" },
+  { id:"safety",  label:"Red Flags",      icon:"🚩" },
+];
+
+/* ============================================================
+   APP
+   ============================================================ */
+function App() {
+  const [tab, setTab] = useState("today");
+  const [st, setSt] = useState(() => loadState() || DEFAULT_STATE);
+  useEffect(() => { saveState(st); }, [st]);
+
+  const today = iso();
+  const dow = new Date().getDay();
+  const upd = fn => setSt(prev => { const n = JSON.parse(JSON.stringify(prev)); fn(n); return n; });
+
+  const dayIndex = Math.max(0, daysBetween(st.start, today));
+  const week = Math.min(8, Math.floor(dayIndex / 7) + 1);
+  const phase = week <= 2 ? 1 : week <= 5 ? 2 : 3;
+  const phaseData = PHASES.find(p => p.ph === phase);
+
+  const todayLog = st.logs[today] || {};
+  const painNow = Math.max(todayLog.kneeL || 0, todayLog.kneeR || 0);
+  const flare = painNow >= 6 || (todayLog.tender || 0) >= 7 || (todayLog.burn || 0) >= 8;
+
+  const scheduledId = WEEK[dow].s;
+  const suggestedId = flare ? "flare" : scheduledId;
+  const doneToday = st.done[today] || [];
+
+  const [runId, setRunId] = useState(null);
+  const [runChecks, setRunChecks] = useState({});
+  const [openEx, setOpenEx] = useState(null);
+
+  // rest timer
+  const [tLeft, setTLeft] = useState(0);
+  const tRef = useRef(null);
+  useEffect(() => {
+    if (tLeft <= 0) { clearInterval(tRef.current); return; }
+    tRef.current = setInterval(() => setTLeft(v => v <= 1 ? 0 : v - 1), 1000);
+    return () => clearInterval(tRef.current);
+  }, [tLeft > 0]);
+  const mmss = s => Math.floor(s/60) + ":" + String(s % 60).padStart(2,"0");
+
+  const startSession = id => { setRunId(id); setRunChecks({}); setOpenEx(null); setTab("session"); };
+  const finishSession = id => {
+    upd(n => { n.done[today] = Array.from(new Set([...(n.done[today]||[]), id])); });
+    setRunId(null); setRunChecks({});
+  };
+
+  const setLog = (k,v) => upd(n => { n.logs[today] = { ...(n.logs[today]||{}), [k]:v }; });
+  const setFoot = (k,v) => upd(n => { n.feet[today] = { ...(n.feet[today]||{}), [k]:v }; });
+
+  const lastN = (k, n) => {
+    const days = Object.keys(st.logs).sort();
+    return days.slice(-n).map(d => st.logs[d][k]).filter(v => typeof v === "number");
+  };
+  const streak = (() => {
+    let c = 0;
+    for (let i = 0; i < 400; i++) {
+      const d = iso(new Date(Date.now() - i*86400000));
+      if ((st.done[d] || []).length) c++;
+      else if (i > 0) break;
+    }
+    return c;
+  })();
+  const totalSessions = Object.values(st.done).reduce((a,v) => a + v.length, 0);
+  const footDoneToday = FOOTCHECK.every(f => (st.feet[today]||{})[f.k]);
+
+  const copyText = t => { navigator.clipboard?.writeText(t); };
+
+  const buildReport = () => {
+    const days = Object.keys(st.logs).sort();
+    const avg = k => { const v = days.map(d => st.logs[d][k]).filter(x => typeof x === "number"); return v.length ? (v.reduce((a,b)=>a+b,0)/v.length).toFixed(1) : "—"; };
+    const recent = days.slice(-14);
+    let out = "LEG HEALTH SUMMARY\n";
+    out += "Prepared " + new Date().toLocaleDateString() + "\n";
+    out += "Program start: " + st.start + "  |  Currently week " + week + " of 8 (Phase " + phase + ")\n";
+    out += "Sessions completed: " + totalSessions + "  |  Current streak: " + streak + (streak === 1 ? " day" : " days") + "\n\n";
+    out += "CONDITIONS ADDRESSED\n";
+    out += "  Bilateral lipedema (thigh-dominant); peripheral neuropathy (calves, feet, toes);\n";
+    out += "  bilateral knee osteoarthritis.\n\n";
+    out += "SYMPTOM AVERAGES (0-10, all logged days, n=" + days.length + ")\n";
+    SCALES.forEach(s => { out += "  " + s.n.padEnd(30) + avg(s.k) + "\n"; });
+    const COLS = ["KneeL","KneeR","Heavy","Tender","Burn","Swell","Energy","Comp(h)"];
+    const KEYS = ["kneeL","kneeR","heavy","tender","burn","swell","energy","comp"];
+    out += "\nLAST 14 LOGGED DAYS\n";
+    out += "  " + "Date".padEnd(12) + COLS.map(c => c.padStart(8)).join("") + "\n";
+    recent.forEach(d => {
+      const l = st.logs[d];
+      out += "  " + d.padEnd(12) + KEYS.map(k => String(l[k] === undefined ? "-" : l[k]).padStart(8)).join("") + "\n";
+    });
+    if (st.measures.length) {
+      out += "\nLIMB MEASUREMENTS (cm)\n";
+      st.measures.forEach(m => {
+        out += "  " + m.date + "\n";
+        ["L","R"].forEach(side => {
+          const row = CIRC.map(c => c.c + ":" + (m[side]?.[c.c] || "-")).join("  ");
+          out += "    " + side + " circ:  " + row + "\n";
+          const lrow = LEN.map(c => c.c + ":" + (m[side + "len"]?.[c.c] || "-")).join("  ");
+          out += "    " + side + " len:   " + lrow + "\n";
+        });
+      });
+      if (st.measures.length > 1) {
+        const a = st.measures[0], b = st.measures[st.measures.length-1];
+        out += "\n  CHANGE from " + a.date + " to " + b.date + " (cm, negative = reduction)\n";
+        ["L","R"].forEach(side => {
+          const parts = CIRC.filter(c => a[side]?.[c.c] && b[side]?.[c.c])
+            .map(c => c.c + ": " + (b[side][c.c] - a[side][c.c]).toFixed(1));
+          if (parts.length) out += "    " + side + ": " + parts.join("  ") + "\n";
+        });
+      }
+    }
+    out += "\nCOMPRESSION STATUS\n";
+    out += "  Class prescribed: " + (st.comp.cls || "not yet set") + "\n";
+    out += "  Style: " + (st.comp.style || "not yet set") + "\n";
+    out += "  Manufacturer / fitter: " + (st.comp.maker || "-") + " / " + (st.comp.fitter || "-") + "\n";
+    out += "  Notes: " + (st.comp.notes || "-") + "\n";
+    out += "\nQUESTIONS / NOTES FOR MY PT\n";
+    days.slice(-14).filter(d => st.logs[d].note).forEach(d => { out += "  " + d + ": " + st.logs[d].note + "\n"; });
+    return out;
+  };
+
+  // Sessions are phase-aware: harder movements stay hidden until the program reaches them.
+  const inPhase = id => { const e = byId(id); return !!e && e.ph <= phase; };
+  const run = runId ? SESSIONS[runId] : null;
+  const runIds = run ? run.blocks.flatMap(b => b.ids).filter(inPhase) : [];
+  const runDone = runIds.filter(i => runChecks[i]).length;
+  const runLocked = run ? run.blocks.flatMap(b => b.ids).filter(i => !inPhase(i)) : [];
+
+  return (
+  <div className="db">
+    <div className="hdr">
+      <div className="hbrand">
+        <div className="hlogo">🦵</div>
+        <div>
+          <div className="htitle">Strong Legs</div>
+          <div className="hsub">LIPEDEMA · NEUROPATHY · KNEE OA</div>
+        </div>
+      </div>
+      <div className="huser">
+        <strong>Week {week} of 8</strong>
+        Phase {phase} · {phaseData.n}
+      </div>
+    </div>
+
+    <div className="layout">
+      <div className="sidebar">
+        {TABS.map(t => (
+          <div key={t.id} className={"sitem" + (tab === t.id ? " on" : "")} onClick={() => setTab(t.id)}>
+            <span>{t.icon}</span><span>{t.label}</span>
+          </div>
+        ))}
+        <div className="sfoot">
+          Everything you enter stays on this device only. Nothing is uploaded anywhere.
+        </div>
+      </div>
+
+      <div className="main">
+        <div className="pg">
+
+        {/* ================= TODAY ================= */}
+        {tab === "today" && (
+          <div>
+            <div className="ttl">Today</div>
+            <div className="sub">{pretty(today)} · Week {week}, Phase {phase} — {phaseData.n}</div>
+
+            {flare && (
+              <div className="danger">
+                <strong>Flare mode is on.</strong> Your logged pain is high today, so the plan has swapped itself
+                to the Calm Day protocol — breathing, drainage, quad sets and elevation only. Nothing that loads
+                the knees. Backing off on a bad day is what lets you train on all the other days; it is part of
+                the program, not a failure of it.
+              </div>
+            )}
+
+            <div className="g4 mb2">
+              <div className="kpi"><div className="kpiv">{streak}</div><div className="kpil">Day streak</div></div>
+              <div className="kpi"><div className="kpiv">{totalSessions}</div><div className="kpil">Sessions done</div></div>
+              <div className="kpi"><div className="kpiv">{todayLog.comp !== undefined ? todayLog.comp + "h" : "—"}</div><div className="kpil">Compression today</div></div>
+              <div className="kpi"><div className="kpiv">{footDoneToday ? "✓" : "—"}</div><div className="kpil">Foot check</div></div>
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div>
+                  <div className="ctitle" style={{marginBottom:2}}>{SESSIONS[suggestedId].icon} {SESSIONS[suggestedId].n}</div>
+                  <div style={{fontSize:12,color:"var(--muted)"}}>{SESSIONS[suggestedId].focus} · about {SESSIONS[suggestedId].mins} min</div>
+                </div>
+                {doneToday.includes(suggestedId) && <span className="tag tg">Done today ✓</span>}
+              </div>
+              <div className="row">
+                <button className="btn ba" onClick={() => startSession(suggestedId)}>
+                  {doneToday.includes(suggestedId) ? "Do it again" : "Start session"}
+                </button>
+                {!flare && <button className="btn bo bsm" onClick={() => startSession("flare")}>Too sore — Calm Day instead</button>}
+                {suggestedId !== "recovery" && <button className="btn bo bsm" onClick={() => startSession("recovery")}>Just drainage</button>}
+              </div>
+            </div>
+
+            <div className="g2 mb2">
+              <div className="card">
+                <div className="ctitle">Quick log</div>
+                <div style={{fontSize:12,color:"var(--muted)",marginBottom:12,lineHeight:1.6}}>
+                  Thirty seconds a day. This is what turns "my legs hurt" into a chart your PT and your
+                  insurer can actually act on.
+                </div>
+                {SCALES.slice(0,4).map(s => (
+                  <Slider key={s.k} label={s.n} value={todayLog[s.k] ?? 0} lo={s.lo} hi={s.hi}
+                    onChange={v => setLog(s.k, v)}/>
+                ))}
+                <button className="btn bo bsm bfull" onClick={() => setTab("track")}>Log the rest →</button>
+              </div>
+
+              <div className="card">
+                <div className="ctitle">Today's non-negotiables</div>
+                <div className={"chk" + (footDoneToday ? " done" : "")} onClick={() => setTab("feet")}>
+                  <input type="checkbox" readOnly checked={footDoneToday}/>
+                  <div><strong>Foot inspection</strong><br/>
+                  <span style={{color:"var(--muted)",fontSize:11.5}}>Every night. Numb feet cannot report injuries — your eyes have to.</span></div>
+                </div>
+                <div className={"chk" + (todayLog.comp ? " done" : "")}>
+                  <input type="checkbox" readOnly checked={!!todayLog.comp}/>
+                  <div style={{width:"100%"}}><strong>Compression worn</strong><br/>
+                    <span style={{color:"var(--muted)",fontSize:11.5}}>Put it on before you get up, while swelling is lowest.</span>
+                    <div className="row" style={{marginTop:6}}>
+                      <input type="number" min="0" max="24" placeholder="hrs" style={{width:78}}
+                        value={todayLog.comp ?? ""} onChange={e => setLog("comp", e.target.value === "" ? undefined : +e.target.value)}/>
+                      <span style={{fontSize:11.5,color:"var(--muted)"}}>hours today</span>
+                    </div>
+                  </div>
+                </div>
+                <div className={"chk" + ((st.logs[today]||{}).elev ? " done" : "")}
+                  onClick={() => setLog("elev", !todayLog.elev)}>
+                  <input type="checkbox" readOnly checked={!!todayLog.elev}/>
+                  <div><strong>Legs above the heart, 10+ minutes</strong><br/>
+                  <span style={{color:"var(--muted)",fontSize:11.5}}>Free drainage. Do it while you watch something.</span></div>
+                </div>
+                <div className={"chk" + ((st.logs[today]||{}).water ? " done" : "")}
+                  onClick={() => setLog("water", !todayLog.water)}>
+                  <input type="checkbox" readOnly checked={!!todayLog.water}/>
+                  <div><strong>Water through the day</strong><br/>
+                  <span style={{color:"var(--muted)",fontSize:11.5}}>Restricting fluid does not reduce lipedema swelling — it concentrates it.</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="ctitle">This week at a glance</div>
+              <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:7}}>
+                {WEEK.map((w,i) => {
+                  const d = iso(new Date(Date.now() + (i - dow)*86400000));
+                  const isDone = (st.done[d]||[]).length > 0;
+                  return (
+                    <div key={w.d} className={"daycard" + (i === dow ? " today" : "")}
+                      style={{cursor:"pointer",padding:"9px 7px"}} onClick={() => startSession(w.s)}>
+                      <div className="dayname">{w.d}</div>
+                      <div style={{fontSize:19,margin:"3px 0"}}>{SESSIONS[w.s].icon}</div>
+                      <div style={{fontSize:10.5,color:"var(--muted)",lineHeight:1.35}}>{SESSIONS[w.s].n}</div>
+                      {isDone && <div style={{fontSize:11,color:"var(--sage)",marginTop:3}}>✓</div>}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="foot">
+                Tap any day to run that session now. The order is deliberate: strength days are separated by a
+                cardio or drainage day so the knees never get loaded twice in a row.
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= SESSION PLAYER ================= */}
+        {tab === "session" && (
+          <div>
+            {!run && (
+              <div>
+                <div className="ttl">Pick a session</div>
+                <div className="sub">Anything here can be done at home. The pool session is the only one that needs somewhere to go.</div>
+                <div className="g2">
+                  {Object.entries(SESSIONS).map(([id,s]) => (
+                    <div key={id} className="card mb" style={{cursor:"pointer"}} onClick={() => startSession(id)}>
+                      <div className="rowb">
+                        <div style={{minWidth:0}}>
+                          <div className="ctitle" style={{marginBottom:2}}>{s.icon} {s.n}</div>
+                          <div style={{fontSize:12,color:"var(--muted)",lineHeight:1.55}}>{s.focus}</div>
+                        </div>
+                        <span className="tag ty" style={{flexShrink:0}}>{s.mins} min</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {run && (
+              <div>
+                <div className="rowb mb">
+                  <div>
+                    <div className="ttl" style={{marginBottom:2}}>{run.icon} {run.n}</div>
+                    <div style={{fontSize:12.5,color:"var(--muted)"}}>{run.focus}</div>
+                  </div>
+                  <button className="btn bo bsm" onClick={() => setRunId(null)}>← All sessions</button>
+                </div>
+
+                <div className="card mb2">
+                  <div className="rowb mb">
+                    <span style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>{runDone} of {runIds.length} done</span>
+                    <span style={{fontSize:11.5,color:"var(--muted)"}}>about {run.mins} min</span>
+                  </div>
+                  <div className="bar"><div className="barf" style={{width:(runIds.length ? runDone/runIds.length*100 : 0) + "%"}}/></div>
+                  <hr/>
+                  <div className="rowb">
+                    <div className="row">
+                      <span style={{fontSize:11.5,color:"var(--muted)"}}>Rest timer:</span>
+                      {[30,45,60,90].map(s => <button key={s} className="btn bo bsm" onClick={() => setTLeft(s)}>{s}s</button>)}
+                    </div>
+                    {tLeft > 0 && <div className="row"><span className="timer" style={{fontSize:26}}>{mmss(tLeft)}</span>
+                      <button className="btn bo bsm" onClick={() => setTLeft(0)}>stop</button></div>}
+                  </div>
+                </div>
+
+                {run.blocks.map((b,bi) => {
+                  const ids = b.ids.filter(inPhase);
+                  if (!ids.length) return null;
+                  return (
+                    <div key={bi} style={{marginBottom:18}}>
+                      <div className="sgtitle">{b.l}</div>
+                      {ids.map(id => (
+                        <ExCard key={id} ex={byId(id)} open={openEx === id}
+                          toggle={() => setOpenEx(openEx === id ? null : id)}
+                          checked={runChecks[id]} onCheck={() => setRunChecks(c => ({...c, [id]: !c[id]}))}/>
+                      ))}
+                    </div>
+                  );
+                })}
+
+                {runLocked.length > 0 && (
+                  <div className="info">
+                    <strong>Not yet:</strong> {runLocked.map(i => byId(i).n).join(", ")}. {runLocked.length === 1 ? "This movement joins" : "These movements join"} this
+                    session automatically once you reach Phase {Math.min(...runLocked.map(i => byId(i).ph))}. Building the base
+                    first is what makes them safe rather than just harder.
+                  </div>
+                )}
+
+                <div className="card">
+                  <div className="ctitle">Finish up</div>
+                  <div style={{fontSize:12.5,color:"var(--muted)",marginBottom:11,lineHeight:1.6}}>
+                    How did the knees feel during this? If pain went above 5 out of 10, or stayed elevated for
+                    more than two hours afterward, that session was too much — drop back a phase next time.
+                  </div>
+                  <Slider label="Worst knee pain during the session" value={todayLog.sessPain ?? 0} lo="none" hi="severe"
+                    onChange={v => setLog("sessPain", v)}/>
+                  <button className="btn ba bfull" onClick={() => { finishSession(runId); setTab("today"); }}>
+                    Mark session complete ✓
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ================= PROGRAM ================= */}
+        {tab === "program" && (
+          <div>
+            <div className="ttl">The 8-Week Program</div>
+            <div className="sub">
+              Built around one principle: you cannot reshape lipedema tissue with exercise, but you can build the
+              muscle underneath it, move the fluid inside it, and protect the joints living in it. That is what
+              this plan actually delivers, and it is worth a great deal.
+            </div>
+
+            <div className="info">
+              <strong>An honest expectation, first.</strong> Lipedema fat is structurally different from ordinary
+              fat and it does not respond to diet or exercise the way ordinary fat does. Nothing in this program
+              will "tone away" the tissue in your thighs, and anyone selling you that is selling you something.
+              What this program does do is real and measurable: build quadriceps and glutes that decompress
+              arthritic knees, restore the calf pump that moves stagnant fluid, hold onto the foot and balance
+              control that neuropathy erodes, and make your legs feel lighter and work better. Firmer, stronger,
+              less heavy, more capable — yes. Structurally smaller thighs — no, and being told otherwise just
+              sets you up to feel like you failed at something that was never on offer.
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div className="ctitle" style={{marginBottom:0}}>Program start date</div>
+                <input type="date" value={st.start} onChange={e => upd(n => { n.start = e.target.value; })} style={{width:160}}/>
+              </div>
+              <div className="bar"><div className="barf" style={{width:Math.min(100, week/8*100) + "%"}}/></div>
+              <div style={{fontSize:11.5,color:"var(--muted)",marginTop:6}}>
+                Week {week} of 8. {week >= 8 ? "You are at the end of the block — re-measure, review with your PT, and start again from Phase 2 with your new baseline." : "Keep going."}
+              </div>
+            </div>
+
+            {PHASES.map(p => (
+              <div key={p.ph} className="card mb" style={p.ph === phase ? {borderColor:"var(--amber2)",boxShadow:"0 0 0 2px rgba(224,154,79,0.18)"} : null}>
+                <div className="rowb mb">
+                  <div className="ctitle" style={{marginBottom:0}}>Phase {p.ph} · {p.n}</div>
+                  <span className={"tag " + p.color}>{p.wks}</span>
+                </div>
+                <div style={{fontSize:12.5,lineHeight:1.7,marginBottom:9}}>{p.goal}</div>
+                <div className="exlabel">What changes in this phase</div>
+                <ul style={{fontSize:12.5,lineHeight:1.75,margin:"5px 0 9px 17px"}}>
+                  {p.dos.map((d,i) => <li key={i}>{d}</li>)}
+                </ul>
+                <div style={{fontSize:12.5,background:"#eef5ef",borderRadius:8,padding:"9px 11px",lineHeight:1.6}}>
+                  <strong>You know it worked when:</strong> {p.win}
+                </div>
+              </div>
+            ))}
+
+            <div className="card">
+              <div className="ctitle">Weekly structure</div>
+              <div className="scroll">
+                <table className="tbl">
+                  <thead><tr><th>Day</th><th>Session</th><th>Focus</th><th>Time</th></tr></thead>
+                  <tbody>
+                    {WEEK.map(w => (
+                      <tr key={w.d}>
+                        <td><strong>{w.d}</strong></td>
+                        <td>{SESSIONS[w.s].icon} {SESSIONS[w.s].n}</td>
+                        <td style={{color:"var(--muted)"}}>{SESSIONS[w.s].focus}</td>
+                        <td>{SESSIONS[w.s].mins} min</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="foot">
+                No pool access? Swap Saturday's water session for the bike session and add ten minutes. The pool
+                is the best tool for your combination of conditions, but a program you can actually do beats a
+                better program you cannot get to.
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= LIBRARY ================= */}
+        {tab === "library" && (
+          <div>
+            <div className="ttl">Exercise Library</div>
+            <div className="sub">
+              {EX.length} movements, every one chosen to be safe for all three conditions at once. Tap any
+              exercise to see why it is in here, how to do it, and what to watch for.
+            </div>
+            {CATS.map(c => (
+              <div key={c} style={{marginBottom:20}}>
+                <div className="rowb" style={{marginBottom:3}}>
+                  <div className="ctitle" style={{marginBottom:0}}>{CATMETA[c].icon} {c}</div>
+                  <span className="tag tt">{EX.filter(e => e.cat === c).length} exercises</span>
+                </div>
+                <div style={{fontSize:12,color:"var(--muted)",marginBottom:9}}>{CATMETA[c].desc}</div>
+                {EX.filter(e => e.cat === c).map(ex => (
+                  <ExCard key={ex.id} ex={ex} open={openEx === ex.id}
+                    toggle={() => setOpenEx(openEx === ex.id ? null : ex.id)}/>
+                ))}
+              </div>
+            ))}
+            <div className="warn">
+              <strong>What is deliberately not in here:</strong> deep squats and lunges, leg press, running or
+              jogging, step aerobics, jumping of any kind, deep knee bends, heavy eccentric loading, and any
+              unsupported single-leg balance work. Deep knee flexion under load grinds an arthritic joint,
+              impact travels straight into cartilage that is already thin, heavy eccentric loading bruises
+              lipedema tissue, and unsupported balance with numb feet is a fall risk that is simply not worth
+              the training benefit.
+            </div>
+          </div>
+        )}
+
+        {/* ================= TRACKER ================= */}
+        {tab === "track" && (
+          <div>
+            <div className="ttl">Symptom Tracker</div>
+            <div className="sub">
+              Log daily. Two weeks of this is worth more at your next appointment than anything you can
+              remember on the spot — and it is exactly the evidence an insurer responds to.
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Log for {pretty(today)}</div>
+              {SCALES.map(s => (
+                <Slider key={s.k} label={s.n} value={todayLog[s.k] ?? 0} lo={s.lo} hi={s.hi} onChange={v => setLog(s.k, v)}/>
+              ))}
+              <div className="g2" style={{marginBottom:12}}>
+                <div>
+                  <span className="lbl">Compression worn (hours)</span>
+                  <input type="number" min="0" max="24" value={todayLog.comp ?? ""}
+                    onChange={e => setLog("comp", e.target.value === "" ? undefined : +e.target.value)}/>
+                </div>
+                <div>
+                  <span className="lbl">Sleep (hours)</span>
+                  <input type="number" min="0" max="16" value={todayLog.sleep ?? ""}
+                    onChange={e => setLog("sleep", e.target.value === "" ? undefined : +e.target.value)}/>
+                </div>
+              </div>
+              <span className="lbl">Notes — anything you want to tell your PT</span>
+              <textarea rows="3" value={todayLog.note || ""} onChange={e => setLog("note", e.target.value)}
+                placeholder="e.g. left knee sharp on stairs; garment left a mark behind the knee that took 40 min to fade; feet burned all evening"/>
+            </div>
+
+            <div className="g2 mb2">
+              {SCALES.map(s => {
+                const d = lastN(s.k, 30);
+                const c = s.k.startsWith("knee") ? "var(--rose)" : s.k === "burn" ? "var(--plum)" : s.k === "energy" ? "var(--sage)" : "var(--teal)";
+                const last = d[d.length-1], first = d[0];
+                const delta = (d.length > 2 && first !== undefined) ? last - first : null;
+                return (
+                  <div key={s.k} className="card">
+                    <div className="rowb" style={{marginBottom:4}}>
+                      <span style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>{s.n}</span>
+                      {delta !== null && (
+                        <span className={"tag " + ((s.inv ? delta < 0 : delta > 0) ? "tg" : delta === 0 ? "tb" : "ty")}>
+                          {delta > 0 ? "+" : ""}{delta} since start
+                        </span>
+                      )}
+                    </div>
+                    <Spark series={d} color={c}/>
+                    <div style={{fontSize:10.5,color:"var(--muted)",marginTop:3}}>Last {d.length} logged days</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="card">
+              <div className="ctitle">Recent log</div>
+              <div className="scroll">
+                <table className="tbl">
+                  <thead><tr><th>Date</th><th>Knee L/R</th><th>Heavy</th><th>Burn</th><th>Swell</th><th>Comp</th><th>Note</th></tr></thead>
+                  <tbody>
+                    {Object.keys(st.logs).sort().slice(-14).reverse().map(d => {
+                      const l = st.logs[d];
+                      return (
+                        <tr key={d}>
+                          <td>{pretty(d)}</td>
+                          <td>{l.kneeL ?? "-"} / {l.kneeR ?? "-"}</td>
+                          <td>{l.heavy ?? "-"}</td><td>{l.burn ?? "-"}</td><td>{l.swell ?? "-"}</td>
+                          <td>{l.comp !== undefined ? l.comp + "h" : "-"}</td>
+                          <td style={{color:"var(--muted)",maxWidth:200}}>{l.note || ""}</td>
+                        </tr>
+                      );
+                    })}
+                    {!Object.keys(st.logs).length && <tr><td colSpan="7" style={{color:"var(--muted)"}}>Nothing logged yet. Start with today.</td></tr>}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= FOOT CHECK ================= */}
+        {tab === "feet" && (
+          <div>
+            <div className="ttl">Daily Foot Check</div>
+            <div className="sub">
+              The single most important habit on this whole app. Two minutes, every night, no exceptions.
+            </div>
+
+            <div className="danger">
+              <strong>Why this is not optional.</strong> Peripheral neuropathy removes your injury alarm. A
+              blister, a cut, a pebble in your shoe, a seam rubbing — all of it can happen without you feeling a
+              thing, and a small wound on a foot with reduced sensation and reduced circulation can become a
+              serious problem quickly and quietly. Your eyes are now doing the job your nerves used to do.
+              That is the trade, and this checklist is how you make it.
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div className="ctitle" style={{marginBottom:0}}>Tonight · {pretty(today)}</div>
+                <span className={"tag " + (footDoneToday ? "tg" : "ty")}>
+                  {FOOTCHECK.filter(f => (st.feet[today]||{})[f.k]).length} of {FOOTCHECK.length}
+                </span>
+              </div>
+              {FOOTCHECK.map(f => {
+                const on = !!(st.feet[today]||{})[f.k];
+                return (
+                  <div key={f.k} className={"chk" + (on ? " done" : "")} onClick={() => setFoot(f.k, !on)}>
+                    <input type="checkbox" readOnly checked={on}/>
+                    <div><strong>{f.t}</strong><br/>
+                    <span style={{color:"var(--muted)",fontSize:11.5}}>{f.d}</span></div>
+                  </div>
+                );
+              })}
+              <hr/>
+              <span className="lbl">Anything you found tonight</span>
+              <textarea rows="2" value={(st.feet[today]||{}).note || ""}
+                onChange={e => setFoot("note", e.target.value)}
+                placeholder="e.g. red spot under right big toe, small callus building on the left heel"/>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Call your clinician the same day if you find</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                <li>Any open area, cut, crack, or blister — however small, and even if it does not hurt. Especially if it does not hurt.</li>
+                <li>Redness with warmth, or a red streak spreading up the leg. That can be cellulitis and it needs antibiotics quickly, not watchful waiting.</li>
+                <li>A dark or black area, or skin that has gone hard and leathery.</li>
+                <li>Pus, an odor, or drainage of any kind.</li>
+                <li>A toe that is white, blue, or noticeably colder than the others.</li>
+                <li>Sudden swelling in one leg only, particularly with calf pain or warmth. Get that assessed urgently — it can be a clot.</li>
+              </ul>
+            </div>
+
+            <div className="card">
+              <div className="ctitle">Foot protection rules</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                <li><strong>Never barefoot.</strong> Not in the house, not to the bathroom at night. Supportive slippers with a closed toe.</li>
+                <li><strong>Shake out every shoe before you put it on.</strong> Every time. This one habit prevents a lot of wounds.</li>
+                <li><strong>Seamless socks, light colored.</strong> Light colors show blood and drainage immediately; seams create pressure points you cannot feel.</li>
+                <li><strong>Break new shoes in one hour at a time,</strong> checking the feet after each wear.</li>
+                <li><strong>Test bath water with your elbow or a thermometer,</strong> never your feet. Burns are a real risk with reduced sensation.</li>
+                <li><strong>No heating pads or hot water bottles on the feet or legs.</strong> Same reason.</li>
+                <li><strong>Leave nail and callus care to a podiatrist</strong> if your vision or reach makes it hard. No bathroom surgery on calluses, and no chemical corn removers.</li>
+                <li><strong>Moisturize daily, but never between the toes.</strong> Dry skin cracks; damp toe webs break down.</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* ================= COMPRESSION 101 ================= */}
+        {tab === "comp" && (
+          <div>
+            <div className="ttl">Compression 101</div>
+            <div className="sub">
+              Your PT is right, and the reason standard garments do not fit you is not a mystery — it is
+              arithmetic. This page gives you the vocabulary to make that case yourself.
+            </div>
+
+            <div className="info">
+              <strong>The short version.</strong> You need <span className="accent">custom flat-knit</span> garments,
+              not ready-made circular-knit ones. "Flat knit" and "custom" are the two terms that change the
+              conversation with a fitter or an insurer, because they name a clinical category rather than a
+              preference. Everything below is the reasoning behind those two words.
+            </div>
+
+            {WHY_CUSTOM.map((w,i) => (
+              <div key={i} className="card mb">
+                <div className="ctitle">{w.t}</div>
+                <div style={{fontSize:12.5,lineHeight:1.8}}>{w.b}</div>
+              </div>
+            ))}
+
+            <div className="card mb2">
+              <div className="ctitle">Compression classes — and which is likely right for you</div>
+              <div className="scroll">
+                <table className="tbl">
+                  <thead><tr><th>US class</th><th>European (RAL)</th><th>Typical use</th><th>For lipedema</th></tr></thead>
+                  <tbody>{CLASSES.map((c,i) => (
+                    <tr key={i}><td><strong>{c.us}</strong></td><td>{c.ral}</td><td style={{color:"var(--muted)"}}>{c.use}</td><td>{c.fit}</td></tr>
+                  ))}</tbody>
+                </table>
+              </div>
+              <div className="foot">
+                Higher is not better. Lipedema tissue is painful to pressure, and a garment you cannot tolerate
+                for more than an hour delivers nothing at all. Wearability beats theoretical pressure every time,
+                and with flat knit the fabric stiffness does work that the mmHg number does not capture — a
+                20–30 flat knit can outperform a 30–40 circular knit on a limb shaped like yours.
+              </div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Styles worth asking about</div>
+              <div className="scroll">
+                <table className="tbl">
+                  <thead><tr><th>Style</th><th>What it is</th><th>Note for your situation</th></tr></thead>
+                  <tbody>{GARMENT_TYPES.map((g,i) => (
+                    <tr key={i}><td><strong>{g.n}</strong></td><td style={{color:"var(--muted)"}}>{g.u}</td><td>{g.note}</td></tr>
+                  ))}</tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="danger">
+              <div className="ctitle" style={{color:"var(--rose)"}}>Compression with peripheral neuropathy — read this part twice</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                {NEURO_COMPRESSION.map((n,i) => <li key={i} style={{marginBottom:5}}>{n}</li>)}
+              </ul>
+            </div>
+
+            <div className="g2 mb2">
+              <div className="card">
+                <div className="ctitle">Manufacturers with custom flat-knit programs</div>
+                <div className="scroll">
+                  <table className="tbl">
+                    <thead><tr><th>Maker</th><th>Line</th></tr></thead>
+                    <tbody>{MAKERS.map((m,i) => (
+                      <tr key={i}><td><strong>{m.n}</strong><div style={{color:"var(--muted)",fontSize:11}}>{m.note}</div></td><td>{m.p}</td></tr>
+                    ))}</tbody>
+                  </table>
+                </div>
+                <div className="foot">
+                  Availability depends on what your fitter is contracted with and what your plan will pay for.
+                  Ask which of these they can order and why they would pick one for your shape.
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="ctitle">Living with flat knit</div>
+                <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                  <li><strong>Put it on before you get out of bed</strong> — or as early as you can. Swelling is lowest then and the garment goes on far more easily.</li>
+                  <li><strong>Donning gloves, always.</strong> They give you grip so you can work the fabric up in stages instead of yanking it, which is what tears garments and skin.</li>
+                  <li><strong>Wash daily</strong> in mild detergent, no fabric softener, no bleach, no hot dryer. Softener destroys the elastic fibers that make it work.</li>
+                  <li><strong>You need at least two per leg</strong> so one is always clean and dry. This is not a luxury and it is a legitimate line in a medical necessity letter.</li>
+                  <li><strong>Replace roughly every 4–6 months.</strong> They lose compression long before they look worn out.</li>
+                  <li><strong>Never fold the top down</strong> to shorten it. That creates the exact tight band you are trying to avoid.</li>
+                  <li><strong>If it rolls or digs, stop wearing it</strong> and go back to the fitter. A garment that bands is worse for you than no garment.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="ctitle">Take these to your fitting appointment</div>
+              <ol style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 19px"}}>
+                {FITTER_QS.map((q,i) => <li key={i} style={{marginBottom:4}}>{q}</li>)}
+              </ol>
+              <button className="btn bo bsm noprint" style={{marginTop:12}}
+                onClick={() => copyText(FITTER_QS.map((q,i) => (i+1) + ". " + q).join("\n"))}>Copy these questions</button>
+            </div>
+          </div>
+        )}
+
+        {/* ================= MEASUREMENT SHEET ================= */}
+        {tab === "measure" && <MeasureTab st={st} upd={upd} today={today} copyText={copyText}/>}
+
+        {/* ================= ADVOCATE ================= */}
+        {tab === "advocate" && (
+          <div>
+            <div className="ttl">Getting It Approved</div>
+            <div className="sub">
+              Most denials of custom compression are documentation problems, not coverage problems. This page is
+              the paperwork that fixes that.
+            </div>
+
+            <div className="warn">
+              <strong>How to use these.</strong> The medical necessity letter is for your clinician or PT to
+              adapt onto their letterhead and sign — you cannot write it yourself, but handing them a complete
+              draft is the difference between it happening this month and it happening in six. The appeal letter
+              is yours to send under your own name. Fill in every blank; a letter with blanks in it reads as a
+              form and gets treated like one.
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div className="ctitle" style={{marginBottom:0}}>Letter of Medical Necessity — draft for your clinician</div>
+                <button className="btn ba bsm noprint" onClick={() => copyText(LMN)}>Copy</button>
+              </div>
+              <div className="tmpl">{LMN}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="rowb mb">
+                <div className="ctitle" style={{marginBottom:0}}>Appeal letter — if it gets denied</div>
+                <button className="btn ba bsm noprint" onClick={() => copyText(APPEAL)}>Copy</button>
+              </div>
+              <div className="tmpl">{APPEAL}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Denial reasons, and what actually answers each one</div>
+              <div className="scroll">
+                <table className="tbl">
+                  <thead><tr><th style={{width:"30%"}}>If they say</th><th>Your response</th></tr></thead>
+                  <tbody>{DENIALS.map((d,i) => (
+                    <tr key={i}><td><strong>{d.d}</strong></td><td style={{lineHeight:1.7}}>{d.r}</td></tr>
+                  ))}</tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Coverage landscape — what to ask about</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                {MEDICARE_NOTES.map((m,i) => <li key={i} style={{marginBottom:6}}>{m}</li>)}
+              </ul>
+            </div>
+
+            <div className="card">
+              <div className="ctitle">Order of operations</div>
+              <ol style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 19px"}}>
+                <li><strong>Document the ready-made failure first.</strong> Photograph a standard garment on you — rolled at the top, digging in, sliding down — and photograph the indentation marks 20 minutes after removal. This evidence is more persuasive than any letter, and you cannot recreate it later.</li>
+                <li><strong>Fill in the measurement sheet</strong> on the previous tab, both legs, morning measurements. Print it.</li>
+                <li><strong>Ask about arterial screening (ABI)</strong> before compression, given the neuropathy. Get it in the chart.</li>
+                <li><strong>Ask your clinician whether a lymphatic component is documented.</strong> This one question often decides which coverage pathway is open to you.</li>
+                <li><strong>Get the prescription</strong>, specifying custom flat knit, the class, the style, and the quantity per limb.</li>
+                <li><strong>Get the LMN signed</strong> with the measurement sheet and photos attached.</li>
+                <li><strong>Confirm the supplier is in network</strong> and can do custom flat knit specifically. Get a written cost estimate before they order.</li>
+                <li><strong>Submit for prior authorization</strong> if your plan requires it. Do not let anyone order before that comes back.</li>
+                <li><strong>If denied, appeal in writing within the deadline</strong> and request a peer-to-peer review. A large share of appeals succeed — the first denial is frequently automated, not clinical.</li>
+                <li><strong>Keep a log</strong> of every call: date, name, reference number, what they said. It matters at the external review stage.</li>
+              </ol>
+            </div>
+          </div>
+        )}
+
+        {/* ================= REPORT ================= */}
+        {tab === "report" && (
+          <div>
+            <div className="ttl">Report for Your PT</div>
+            <div className="sub">
+              Everything you have logged, formatted to hand over. Bring this to appointments and attach it to
+              insurance paperwork.
+            </div>
+            <div className="card mb2 noprint">
+              <div className="row">
+                <button className="btn ba" onClick={() => copyText(buildReport())}>Copy report</button>
+                <button className="btn bo" onClick={() => window.print()}>Print / save as PDF</button>
+                <button className="btn bo" onClick={() => {
+                  const blob = new Blob([buildReport()], {type:"text/plain"});
+                  const a = document.createElement("a");
+                  a.href = URL.createObjectURL(blob);
+                  a.download = "leg-health-report-" + today + ".txt";
+                  a.click();
+                }}>Download .txt</button>
+              </div>
+            </div>
+            <div className="card"><div className="tmpl" style={{maxHeight:"none"}}>{buildReport()}</div></div>
+            <div className="card" style={{marginTop:15}}>
+              <div className="ctitle">Questions worth asking at your next appointment</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                <li>Is there a lymphatic component documented in my chart, and if not, should I be assessed for one?</li>
+                <li>Can I get a referral to a certified lymphedema therapist (CLT) for manual drainage training?</li>
+                <li>Has my arterial circulation been checked before compression, given the neuropathy?</li>
+                <li>Is aquatic therapy something you can prescribe, and would insurance cover a course of it?</li>
+                <li>Based on my knee imaging, which movements should I take off this list entirely?</li>
+                <li>Would adjustable Velcro wraps be appropriate for me on flare days, alongside the stockings?</li>
+                <li>What is a realistic strength target for me at 8 weeks, so I know whether this is working?</li>
+              </ul>
+            </div>
+            <div className="card noprint" style={{marginTop:15}}>
+              <div className="ctitle">Your data</div>
+              <div style={{fontSize:12.5,color:"var(--muted)",lineHeight:1.7,marginBottom:11}}>
+                Everything lives in this browser on this device only. Nothing is sent anywhere. That also means
+                clearing your browser data will erase it — export a backup now and then.
+              </div>
+              <div className="row">
+                <button className="btn bo bsm" onClick={() => {
+                  const blob = new Blob([JSON.stringify(st,null,2)], {type:"application/json"});
+                  const a = document.createElement("a");
+                  a.href = URL.createObjectURL(blob);
+                  a.download = "leg-health-backup-" + today + ".json";
+                  a.click();
+                }}>Export backup (.json)</button>
+                <label className="btn bo bsm" style={{display:"inline-block"}}>
+                  Restore backup
+                  <input type="file" accept="application/json" style={{display:"none"}} onChange={e => {
+                    const f = e.target.files[0]; if (!f) return;
+                    const r = new FileReader();
+                    r.onload = () => { try { setSt(JSON.parse(r.result)); } catch(err) { alert("That file could not be read."); } };
+                    r.readAsText(f);
+                  }}/>
+                </label>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ================= SAFETY ================= */}
+        {tab === "safety" && (
+          <div>
+            <div className="ttl">Red Flags &amp; Ground Rules</div>
+            <div className="sub">The short list of things that mean stop, and the rules that keep this program safe.</div>
+
+            <div className="danger">
+              <div className="ctitle" style={{color:"var(--rose)"}}>Stop and seek care the same day</div>
+              <ul style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 17px"}}>
+                <li><strong>Sudden swelling in one leg only</strong>, especially with calf pain, warmth, or redness. This can be a blood clot and it is an emergency, not a wait-and-see. Do not massage the leg, do not put compression on it, go and be assessed.</li>
+                <li><strong>Redness that is warm and spreading</strong>, with or without fever or chills. Cellulitis moves fast in lymphatic tissue and needs antibiotics urgently.</li>
+                <li><strong>Chest pain or shortness of breath</strong> — call emergency services.</li>
+                <li><strong>Any open wound, blister, or ulcer on the foot or leg</strong>, however small, and especially if it does not hurt.</li>
+                <li><strong>A knee that locks, gives way, or will not bear weight</strong>, or sudden severe knee swelling after a session.</li>
+                <li><strong>Toes that go white, blue, or cold</strong>, or new numbness that started after a garment went on.</li>
+                <li><strong>Sudden worsening of numbness or weakness</strong>, or new loss of bladder or bowel control — that is urgent regardless of everything else.</li>
+              </ul>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Rules that make this program safe</div>
+              <ul style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 17px"}}>
+                <li><strong>The 24-hour rule.</strong> Soreness that fades within a day is training. Pain that is still elevated 24 hours later means the session was too much — drop the volume by a third and rebuild.</li>
+                <li><strong>The 5-out-of-10 ceiling.</strong> Knee pain should never exceed 5/10 during a movement. At 5, stop that exercise. Not "push through" — stop.</li>
+                <li><strong>Never barefoot, never unshod during standing work.</strong> Supportive shoes for everything upright.</li>
+                <li><strong>Always something to hold.</strong> Every standing exercise here specifies a counter or a rail. That is not a suggestion for someone with numb feet.</li>
+                <li><strong>Elevate at the end of every session.</strong> Exercise mobilizes fluid; elevation is what actually removes it. Skipping the cool-down wastes the work.</li>
+                <li><strong>No heat on the legs.</strong> No hot tubs, no heating pads, no long hot showers. Heat increases swelling in lipedema and burns skin that cannot feel temperature.</li>
+                <li><strong>Do not restrict fluids to reduce swelling.</strong> It does not work and it makes things worse. Drink normally.</li>
+                <li><strong>Progress one variable at a time.</strong> More reps, or more resistance, or more minutes — never two in the same week.</li>
+                <li><strong>Take the deload.</strong> Any week you feel wrecked, repeat the previous week instead of advancing. Nobody is grading this.</li>
+              </ul>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Things this program deliberately does not do</div>
+              <div style={{fontSize:12.5,lineHeight:1.8}}>
+                It does not promise to shrink your thighs, because exercise does not reduce lipedema tissue and
+                you deserve to be told that plainly rather than blamed later for a result that was never
+                achievable. It does not include high-impact work, deep loaded knee flexion, or unsupported
+                balance training, because each of those has a specific risk profile against one of your three
+                conditions. And it does not replace your PT — it is built to be handed to them, argued with,
+                and adjusted. If your physical therapist tells you to change something here, they have seen your
+                knees and your imaging and this app has not. They win.
+              </div>
+            </div>
+
+            <div className="warn">
+              <strong>What this is.</strong> This is an organized, self-directed exercise and tracking tool built
+              around the conditions you described. It is not medical advice, not a diagnosis, and not a
+              substitute for your physical therapist, your physician, or a certified lymphedema therapist. Run
+              the program past your PT before you start it — bring the exercise library tab, it is written so
+              they can scan it quickly. Compression, in particular, should never be started without a clinician
+              confirming it is safe for your circulation.
+            </div>
+
+            <div className="card">
+              <div className="ctitle">Specialists worth having on your team</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                <li><strong>Certified Lymphedema Therapist (CLT).</strong> The highest-value referral available to you. They do manual lymphatic drainage, teach you a self-drainage sequence built for your body, and many are also certified compression fitters.</li>
+                <li><strong>Certified compression fitter.</strong> Specifically one who fits custom flat knit, which is a narrower group than general compression suppliers.</li>
+                <li><strong>Podiatrist.</strong> For nail and callus care and periodic neuropathy foot exams. With reduced sensation, routine foot care becomes a medical service, not a cosmetic one.</li>
+                <li><strong>Vascular assessment.</strong> For the ABI before compression, and to rule out venous disease contributing to the swelling.</li>
+                <li><strong>A physician who knows lipedema.</strong> They are not everywhere. The Lipedema Foundation and the Fat Disorders Resource Society both maintain clinician directories worth checking.</li>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  );
+}
+
+/* ============================================================
+   MEASUREMENT SHEET
+   ============================================================ */
+function MeasureTab({ st, upd, today, copyText }) {
+  const last = st.measures[st.measures.length - 1];
+  const [d, setD] = useState(() => last ? JSON.parse(JSON.stringify(last)) : { date: today, L:{}, R:{}, Llen:{}, Rlen:{} });
+  const [saved, setSaved] = useState(false);
+
+  const set = (side, code, v) => setD(p => ({ ...p, [side]: { ...p[side], [code]: v } }));
+  const cell = (side, code) => (
+    <input className="minput" type="number" step="0.1" value={d[side]?.[code] ?? ""}
+      onChange={e => set(side, code, e.target.value)} placeholder="cm"/>
+  );
+
+  const save = () => {
+    upd(n => {
+      const i = n.measures.findIndex(m => m.date === d.date);
+      if (i >= 0) n.measures[i] = d; else n.measures.push(d);
+      n.measures.sort((a,b) => a.date.localeCompare(b.date));
+    });
+    setSaved(true); setTimeout(() => setSaved(false), 2500);
+  };
+
+  const asText = () => {
+    let o = "CUSTOM COMPRESSION MEASUREMENT SHEET\n";
+    o += "Date measured: " + d.date + "   Time of day: morning (before prolonged standing)\n";
+    o += "Measured by: ______________________   All values in CENTIMETERS\n\n";
+    o += "CIRCUMFERENCES                          LEFT      RIGHT\n";
+    CIRC.forEach(c => { o += "  " + (c.c + " " + c.n).padEnd(38) + String(d.L?.[c.c] ?? "____").padEnd(10) + (d.R?.[c.c] ?? "____") + "\n"; });
+    o += "\nLENGTHS                                 LEFT      RIGHT\n";
+    LEN.forEach(c => { o += "  " + (c.c + " " + c.n).padEnd(38) + String(d.Llen?.[c.c] ?? "____").padEnd(10) + (d.Rlen?.[c.c] ?? "____") + "\n"; });
+    o += "\nGARMENT REQUESTED\n";
+    o += "  Construction: CUSTOM FLAT KNIT (not circular knit / not ready-made)\n";
+    o += "  Compression class: " + (st.comp.cls || "____________") + "\n";
+    o += "  Style: " + (st.comp.style || "____________") + "\n";
+    o += "  Quantity per limb: ______      Donning aids required: yes\n";
+    o += "  Manufacturer: " + (st.comp.maker || "____________") + "\n";
+    o += "\nWHY READY-MADE DOES NOT FIT\n";
+    o += "  Measurements span multiple stock size categories across cA / cC / cG, and the\n";
+    o += "  floor-to-gluteal-fold length (lG) falls outside the standard length range.\n";
+    o += "  Ready-made trial outcome: ______________________________________________\n";
+    o += "\nNotes: " + (st.comp.notes || "") + "\n";
+    return o;
+  };
+
+  return (
+    <div>
+      <div className="ttl">Custom Measurement Sheet</div>
+      <div className="sub">
+        Fill this in, print it, and take it to your fitter and your insurer. These numbers are the strongest
+        argument you have — they turn "standard doesn't fit me" into something a reviewer cannot wave away.
+      </div>
+
+      <div className="warn">
+        <strong>Take this seriously as evidence.</strong> A fitter should take these measurements themselves,
+        and a custom order will be built from theirs, not yours. Yours still matter enormously: they are what
+        you attach to a prior authorization to show the disproportion before anyone has agreed to fit you, and
+        they are how you prove change over time. Measure carefully, date every sheet, and keep them.
+      </div>
+
+      <div className="card mb2">
+        <div className="ctitle">How to measure</div>
+        <ol style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 19px"}}>
+          {MEASURE_RULES.map((r,i) => <li key={i} style={{marginBottom:4}}>{r}</li>)}
+        </ol>
+      </div>
+
+      <div className="card mb2">
+        <div className="rowb mb">
+          <div className="ctitle" style={{marginBottom:0}}>Measurements — both legs, in centimeters</div>
+          <input type="date" value={d.date} onChange={e => setD(p => ({...p, date:e.target.value}))} style={{width:155}}/>
+        </div>
+        <div className="scroll">
+          <table className="tbl">
+            <thead><tr><th style={{width:60}}>Point</th><th>Where to measure</th><th style={{width:90}}>Left</th><th style={{width:90}}>Right</th></tr></thead>
+            <tbody>
+              {CIRC.map(c => (
+                <tr key={c.c}>
+                  <td><span className="mcode">{c.c}</span><div style={{fontSize:10.5,color:"var(--muted)"}}>{c.n}</div></td>
+                  <td style={{color:"var(--muted)",lineHeight:1.6}}>{c.d}</td>
+                  <td>{cell("L", c.c)}</td><td>{cell("R", c.c)}</td>
+                </tr>
+              ))}
+              <tr><td colSpan="4" style={{background:"#eef2ec",fontWeight:600,color:"var(--forest)",fontSize:11,textTransform:"uppercase",letterSpacing:"0.5px"}}>Lengths</td></tr>
+              {LEN.map(c => (
+                <tr key={c.c}>
+                  <td><span className="mcode">{c.c}</span><div style={{fontSize:10.5,color:"var(--muted)"}}>{c.n}</div></td>
+                  <td style={{color:"var(--muted)",lineHeight:1.6}}>{c.d}</td>
+                  <td>{cell("Llen", c.c)}</td><td>{cell("Rlen", c.c)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <hr/>
+        <div className="row noprint">
+          <button className="btn ba" onClick={save}>{saved ? "Saved ✓" : "Save this set"}</button>
+          <button className="btn bo" onClick={() => window.print()}>Print sheet</button>
+          <button className="btn bo" onClick={() => copyText(asText())}>Copy as text</button>
+        </div>
+      </div>
+
+      <div className="card mb2">
+        <div className="ctitle">Garment details</div>
+        <div className="g2">
+          <div className="mb">
+            <span className="lbl">Compression class prescribed</span>
+            <select value={st.comp.cls} onChange={e => upd(n => { n.comp.cls = e.target.value; })}>
+              <option value="">Not set yet</option>
+              {CLASSES.map(c => <option key={c.us} value={c.us}>{c.us}{c.ral !== "—" ? " (" + c.ral + ")" : ""}</option>)}
+            </select>
+          </div>
+          <div className="mb">
+            <span className="lbl">Style</span>
+            <select value={st.comp.style} onChange={e => upd(n => { n.comp.style = e.target.value; })}>
+              <option value="">Not set yet</option>
+              {GARMENT_TYPES.map(g => <option key={g.n} value={g.n}>{g.n}</option>)}
+            </select>
+          </div>
+          <div className="mb">
+            <span className="lbl">Manufacturer</span>
+            <input type="text" value={st.comp.maker} onChange={e => upd(n => { n.comp.maker = e.target.value; })} placeholder="e.g. Juzo Expert"/>
+          </div>
+          <div className="mb">
+            <span className="lbl">Fitter / supplier</span>
+            <input type="text" value={st.comp.fitter} onChange={e => upd(n => { n.comp.fitter = e.target.value; })} placeholder="Name and phone"/>
+          </div>
+        </div>
+        <span className="lbl">Fit notes — what went wrong with standard garments</span>
+        <textarea rows="3" value={st.comp.notes} onChange={e => upd(n => { n.comp.notes = e.target.value; })}
+          placeholder="e.g. size L thigh-high rolled at the top within an hour and left a band mark above the knee that took over an hour to fade; the same size was loose at the ankle"/>
+        <div className="foot">
+          Write this down in detail while it is fresh. Specific, dated fit-failure descriptions are what an
+          appeal reviewer actually reads.
+        </div>
+      </div>
+
+      {st.measures.length > 1 && (
+        <div className="card">
+          <div className="ctitle">Change over time — left leg</div>
+          <div className="scroll">
+            <table className="tbl">
+              <thead><tr><th>Point</th>{st.measures.map(m => <th key={m.date}>{m.date}</th>)}<th>Change</th></tr></thead>
+              <tbody>
+                {CIRC.map(c => {
+                  const first = parseFloat(st.measures[0].L?.[c.c]);
+                  const lastv = parseFloat(st.measures[st.measures.length-1].L?.[c.c]);
+                  const delta = (!isNaN(first) && !isNaN(lastv)) ? (lastv - first).toFixed(1) : null;
+                  return (
+                    <tr key={c.c}>
+                      <td><span className="mcode">{c.c}</span></td>
+                      {st.measures.map(m => <td key={m.date}>{m.L?.[c.c] ?? "—"}</td>)}
+                      <td>{delta === null ? "—" : <span className={"tag " + (delta < 0 ? "tg" : delta > 0 ? "ty" : "tb")}>{delta > 0 ? "+" : ""}{delta} cm</span>}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className="foot">
+            Do not read too much into small changes — measurement varies by a few millimeters depending on tape
+            tension and time of day. A consistent trend across several points over months is meaningful; a
+            single number moving is not.
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
