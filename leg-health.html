@@ -433,6 +433,65 @@ const WHY_CUSTOM = [
   { t:"A rolled or dug-in garment is worse than none at all", b:"When a too-short or too-tight garment rolls at the top, it becomes a tight band around the thigh that blocks drainage above it and forces fluid to pool below. That is not just uncomfortable — it actively worsens the condition it was meant to treat. This is the clinical argument your PT can put in writing, and it is more persuasive to an insurer than 'it doesn't fit well.'" },
 ];
 
+/* ---------- LIPEDEMA vs LYMPHEDEMA ---------- */
+const LIPO_VS_LYMPH = [
+  { f:"What it actually is",
+    lip:"A connective tissue and fat disorder. Fibrotic subcutaneous adipose tissue, deposited symmetrically.",
+    lym:"A fluid problem. Protein-rich lymph that the vessels or nodes cannot move back into circulation, which pools and eventually turns fibrotic." },
+  { f:"Pattern",
+    lip:"Bilateral and symmetrical, essentially always. Starts at the hips or knees and works down.",
+    lym:"Often one limb only, especially when it follows surgery or radiation. Can be both." },
+  { f:"The feet",
+    lip:"SPARED. It stops abruptly above the foot, which creates the classic ankle 'cuff' or 'bracelet'.",
+    lym:"Involved, including the toes. This is the single clearest difference between the two." },
+  { f:"Stemmer sign",
+    lip:"Negative — you can pinch and lift the skin on the top of the foot near the base of the toes.",
+    lym:"Positive — you cannot pinch that skin. Sensitive but not very specific, so it is a signal, not a verdict." },
+  { f:"Pain",
+    lip:"Tender and painful to touch, and bruises easily. The pain is a defining feature.",
+    lym:"Heavy rather than tender. Not usually painful to light touch in the same way." },
+  { f:"Compression target",
+    lip:"Typically Class 1–2 / about 20–30 mmHg — enough to control heaviness without triggering pain.",
+    lym:"Typically Class 2–3 / about 30–40 mmHg, to push against fluid and fibrosis." },
+  { f:"What treatment can achieve",
+    lip:"Pain, heaviness, mobility, and slowing progression. It does not remove the lipedema fat.",
+    lym:"Genuine volume reduction, then maintenance of that reduction." },
+  { f:"Surgery, if it comes to it",
+    lip:"Lymph-sparing liposuction is the lipedema-specific procedure.",
+    lym:"Different operations entirely — lymphatic bypass, node transfer, debulking." },
+];
+
+const SHARED_CARE = `Nearly the entire toolkit is shared, which is why everything you find is branded "lymphedema" even when it is for you.
+
+Complete Decongestive Therapy — compression, exercise, lymphatic stimulation and skin care — is first-line conservative treatment for BOTH. Certified Lymphedema Therapists treat lipedema; it is squarely within their scope and it is who the literature says should be doing your manual drainage. Flat-knit custom garments are the same garments. The fitters are the same fitters. The word on the door is "lymphedema" mostly because that is the older and larger insurance category, not because lipedema is somewhere else.
+
+So the lymphedema resources are the right ones for you. Say "I have lipedema" when you call, and ask whether they work with lipedema patients. Anyone good will say yes without hesitating — and if they hesitate, that has told you something useful.`;
+
+const DIFFERENT_FOR_YOU = [
+  "Dose the compression lower, on purpose. Lipedema tissue is painful, and the usual target is Class 1–2 (roughly 20–30 mmHg) rather than the 30–40 that lymphedema often calls for. If a fitter starts you at 30–40, it is completely reasonable to ask why, and to say that you want to establish tolerance first. A garment you can wear all day beats a stronger one you take off by lunchtime.",
+  "Expect the goal to be different. Lymphedema care aims at reducing limb volume. Yours aims at pain, heaviness, mobility, and preventing progression. Do not let anyone measure your success only in centimeters — and do not measure yourself that way either.",
+  "Your feet are the thing to watch. Lipedema spares the feet; lymphedema does not. If swelling starts appearing in your feet and toes, or you stop being able to pinch the skin on the top of your foot, that is the sign of progression toward lipo-lymphedema. Tell your clinician, because it changes treatment — and it can change what insurance will cover.",
+  "Manual drainage matters less for pure lipedema than for lymphedema, because there is less free fluid to move — but it still helps with pain and heaviness, and it matters a great deal more if a lymphatic component develops.",
+  "Nobody is going to shrink the fat conservatively, and being told otherwise is how people end up feeling like they failed. Lymph-sparing liposuction is the only intervention that reduces lipedema tissue itself, and conservative care is still recommended both before and after it.",
+];
+
+const STEMMER = `THE STEMMER TEST — worth doing once a month
+
+Try to pinch and lift the skin on the TOP of your foot, at the base of the
+second toe.
+
+  You CAN pinch it (negative) .... expected with lipedema
+  You CANNOT pinch it (positive) . suggests a lymphatic component
+
+If a foot that used to pinch stops pinching, or your feet start swelling
+when they never did, write down the date and tell your clinician. That is
+the transition to lipo-lymphedema, and it matters for two reasons: it
+changes what treatment you need, and it may change what your insurance
+will pay for.
+
+This is a signal to report, not a diagnosis to make. It catches most
+lymphedema but also flags people who do not have it.`;
+
 const CLASSES = [
   { us:"15–20 mmHg", ral:"—", use:"Very mild. Usually a starting point for people who cannot tolerate more yet, or for a first trial.", fit:"Sometimes used at the start with lipedema when pain and tenderness are high." },
   { us:"20–30 mmHg", ral:"Class 1 (18–21)", use:"The most common starting point for lipedema. Meaningful support that most people can actually wear all day.", fit:"Frequently the right answer, especially in flat knit where the fabric stiffness does work that the mmHg number alone does not capture." },
@@ -1498,6 +1557,31 @@ function App() {
               or an <span className="accent">adjustable wrap</span> — not ready-made circular-knit ones. Those three
               terms are the ones that change a conversation with a fitter, because each names a construction
               category rather than a preference. Everything below is the reasoning behind them.
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">Lipedema and lymphedema are not the same thing</div>
+              <div className="scroll" style={{marginBottom:12}}>
+                <table className="tbl">
+                  <thead><tr><th style={{width:"20%"}}></th><th>Lipedema — what you have</th><th>Lymphedema</th></tr></thead>
+                  <tbody>{LIPO_VS_LYMPH.map((r,i) => (
+                    <tr key={i}>
+                      <td><strong>{r.f}</strong></td>
+                      <td style={{lineHeight:1.7}}>{r.lip}</td>
+                      <td style={{color:"var(--muted)",lineHeight:1.7}}>{r.lym}</td>
+                    </tr>
+                  ))}</tbody>
+                </table>
+              </div>
+              <div style={{fontSize:12.5,lineHeight:1.85,whiteSpace:"pre-wrap"}}>{SHARED_CARE}</div>
+            </div>
+
+            <div className="card mb2">
+              <div className="ctitle">What that changes for you specifically</div>
+              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+                {DIFFERENT_FOR_YOU.map((d,i) => <li key={i} style={{marginBottom:8}}>{d}</li>)}
+              </ul>
+              <div className="tmpl" style={{marginTop:13}}>{STEMMER}</div>
             </div>
 
             {WHY_CUSTOM.map((w,i) => (
