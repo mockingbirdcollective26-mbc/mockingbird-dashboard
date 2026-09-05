@@ -628,6 +628,116 @@ const MEDICARE_NOTES = [
   "Coverage rules and allowances change year to year. Treat everything on this page as the questions to ask, not as the final answer — confirm current specifics with your plan and your supplier before you order.",
 ];
 
+/* ---------- FINDING GARMENTS THAT ACTUALLY FIT ----------
+   The problem here is not authorization — it is product selection. The
+   diagnosis exists, the PT took measurements, garments arrived; they were
+   standard, they land in the wrong places, and they cannot be pulled on. */
+
+const BAND_PRINCIPLE = `Every compression garment has a top band, and a band is only comfortable where the limb is NARROWING. Put a band on the widest part of a limb and it has nothing to grip — so it digs in, and then it rolls, and a rolled band is a tourniquet.
+
+That single rule explains both of your problems at once, and it points at both fixes: either put the band somewhere the limb narrows, or get rid of the band entirely.`;
+
+const FIT_DIAGNOSIS = [
+  { sym:"Knee-highs cut in at mid-calf and hurt",
+    real:"The garment is too SHORT for your leg, not too tight. Knee-highs are sized by leg LENGTH as well as width, and if the length class is too short, the top band stops partway up and lands on the widest part of your calf — the one place it cannot sit comfortably. On a tall frame, a 'regular' length does this every time.",
+    fix:"Measure heel-to-just-below-the-knee-bend and order by that number. Petite is generally for about 15 inches and under; above that you need regular, long, or tall depending on the maker. If your measurement is past their longest stock length, that is when custom length is the answer — and it is a normal, orderable thing, not an exotic request." },
+  { sym:"Thigh-highs roll down",
+    real:"The band is sitting on the widest part of your thigh with nothing above it to anchor to. On a curvy build there is no narrowing point up there for it to grip, so gravity wins by mid-morning. This is not something you are doing wrong and it is not fixed by sizing up.",
+    fix:"Anchor it or eliminate it. Anchoring: a wide flat silicone top band, a hip attachment, or a waist attachment. Eliminating: go to a style with no thigh band at all — pantyhose, a chaps style (anchored at the outer hip with a waist band), or capri." },
+  { sym:"You cannot get them up at all",
+    real:"This is its own problem and it is extremely common — it is not a strength failure. Flat-knit and firm circular-knit fabric is stiff on purpose, and pulling it up a lipedema-shaped leg while your knees hurt and your hands tire is genuinely hard. Many people quit compression entirely at this step.",
+    fix:"Two separate answers. First, donning aids — they are designed exactly for this and they work. Second, and better for you: pick a garment you do not have to pull on at all. An adjustable wrap goes around the leg and closes with bands. Nothing to haul upward." },
+  { sym:"The band digs in behind the knee",
+    real:"Either the garment is too long, so it is bunching into the back of the knee crease, or it is circular-knit fabric constricting where the leg narrows at the knee.",
+    fix:"A correct-length knee-high sits just below the knee bend with no bunching. If the length is right and it still cuts, that is a construction problem — flat knit does not do this the way circular knit does." },
+  { sym:"Standard arrived when your PT ordered something specific",
+    real:"A substitution happened somewhere between the prescription and the box. That is a supplier and billing question, not a clinical one.",
+    fix:"One phone call, not an appeal. Ask the supplier what was actually ordered versus what shipped, and whether the substitution was theirs or the plan's. If the plan will only pay for stock garments, ask what custom would cost out of pocket — flat-knit custom is often less than people assume, and knowing the number lets you decide." },
+];
+
+const OPTIONS = [
+  { n:"Adjustable wrap — circaid juxtafit essentials style",
+    best:"Start here.",
+    why:"You wrap it around the leg and close it with bands. There is nothing to pull up, which solves your hardest problem outright. It is inelastic, so it does not roll. It comes in a lower-leg piece, an upper-leg piece, and a full-leg system, and — critically for you — the lower leg comes in several LENGTH options including long and extra-long, plus a wider calf option. You adjust the tension yourself through the day, which matters when the tissue is tender.",
+    ask:"Ask to be fitted for the lower leg piece in the longest length that matches your heel-to-knee measurement, with the full-calf width option. Ask about adding the upper leg piece or the whole leg system for the thighs. Confirm the compression level with your PT — these come in 20-30, 30-40 and higher." },
+  { n:"Custom flat-knit knee-high, made to your length",
+    best:"The proper long-term daytime garment for the calves.",
+    why:"Custom means the length is built to your leg, so the top band lands just below your knee where it belongs instead of mid-calf. Flat knit also does not bite into folds the way circular knit does. Your PT already has the measurements this needs.",
+    ask:"Ask specifically for CUSTOM FLAT KNIT with custom length, not a stock size in a longer length. Juzo Expert, medi mediven 550, Sigvaris Advance and Jobst Elvarex all have custom programs; the fitter submits an order form with your numbers." },
+  { n:"Capri or bermuda flat knit",
+    best:"The clever answer for thigh-dominant lipedema.",
+    why:"A capri ends above the ankle and a bermuda is a shorts style — so there is no band at your calf and no band at your knee. For thighs that are the main problem, this removes both of the pressure points that are currently hurting you.",
+    ask:"Ask what the maker's capri and bermuda options are in custom flat knit, and how the leg opening is finished so it does not create a new band lower down." },
+  { n:"Pantyhose, chaps, or waist-attached style",
+    best:"The real fix for rolling.",
+    why:"There is no thigh band to roll, because the garment is held up from your waist instead. Chaps style anchors at the outer hip with a waist band. This is the standard recommendation when a thigh is difficult to fit, which yours is.",
+    ask:"Ask for a waist attachment or a hip attachment as an add-on to a thigh-high, or price a full pantyhose style. This needs your hip and waist measurements, so make sure the fitter takes them." },
+  { n:"Layering: knee-high plus capri that overlap",
+    best:"A workaround using pieces you may already own.",
+    why:"If a knee-high and a capri-length garment overlap above the calf, you get full-leg coverage with no band sitting on a wide point, and each piece is easier to get on than one long garment.",
+    ask:"Make sure they genuinely overlap rather than meeting edge to edge — a gap between two garments becomes a swelling ring." },
+  { n:"Night garment",
+    best:"Worth asking about separately.",
+    why:"Soft, low-stretch, built for sleeping. Much easier to get on than daytime compression, and it keeps some benefit going on days the daytime garment is too much.",
+    ask:"Ask whether a night garment is appropriate for you and whether it is covered separately from your daytime garments." },
+];
+
+const ANTIROLL = [
+  "Body adhesive made for medical garments — It Stays is the one most people use. Water soluble, rolls onto the skin, holds the band. Cheap, and worth trying tonight on the garments you already have.",
+  "Ask whether your garment can be reordered with a WIDE FLAT silicone top band rather than a narrow one. A wide band spreads the grip over more skin and both holds better and digs less.",
+  "A hip attachment or waist attachment clips a thigh-high to a waistband. This is a standard accessory, not a special order.",
+  "Snug compression shorts worn over the top of the thigh-highs will hold them up. Inelegant, free, works.",
+  "Wear the band slightly lower on the thigh where the leg is a touch narrower, if that lands somewhere it can grip.",
+  "Never fold or roll the top down to shorten a garment. That doubles the fabric into exactly the tight ring you are trying to avoid.",
+];
+
+const DONNING = [
+  { n:"Donning gloves", d:"Rubberized grip gloves. The baseline tool — they let you work the fabric up in small stages instead of hauling on it, and they protect both the garment and your skin. Any compression supplier has them and they cost very little. If you have been trying to do this barehanded, start here." },
+  { n:"Doff N' Donner", d:"A rolling cone system that rolls the stocking onto the leg rather than making you pull it. Widely used for exactly the situation you are describing, and it works for removal too, which is often just as hard." },
+  { n:"Ezy-As", d:"A frame the garment is loaded onto, then you slide your foot and leg through. It is the one that can be used one-handed, and it takes the grip strength requirement out almost entirely." },
+  { n:"Slide sheets / silk footies", d:"A low-friction sleeve over the foot that lets the garment glide over the heel — the point where most people get stuck. Removed once the garment is up." },
+  { n:"Zippered garments", d:"Some compression garments come with a zipper. Ask whether the style you need is available with one; it changes the difficulty completely." },
+];
+
+const SUPPLIER_SCRIPT = `WHAT TO SAY WHEN YOU CALL THE SUPPLIER
+
+"Hi — I received compression garments on [date] under order/claim [number].
+My physical therapist measured me and ordered a specific garment, but what
+arrived was a standard size. It does not fit and I cannot use it.
+
+Three things I need help with:
+
+1. Can you tell me what was actually ordered versus what shipped, and
+   whether the substitution came from you or from my plan?
+
+2. The knee-highs stop at mid-calf on me. My heel-to-below-the-knee
+   measurement is ______ cm / ______ inches. What length classes do you
+   carry that fit that measurement, and if none of them do, what would a
+   custom-length garment cost?
+
+3. I physically cannot pull these on. I would like to be fitted for an
+   adjustable wrap system instead — the kind that closes with bands rather
+   than being pulled up. Do you carry those, and can I be measured for the
+   lower leg piece in a long length with a full-calf width?
+
+Also: does anyone in your office do custom flat-knit fittings, or do I need
+a referral somewhere else for that?"
+
+---
+
+TAKE TO THE APPOINTMENT
+  [ ] The garments that do not fit — actually bring them, and put them on
+      in front of the fitter so they can see where they land
+  [ ] Your measurement sheet from this app, both legs, dated
+  [ ] Your PT's original order or prescription, if you can get a copy
+  [ ] A photo of the knee-high band sitting at mid-calf
+
+THE THREE NUMBERS THAT DECIDE EVERYTHING
+  Heel to just below the knee bend (lD) ..... ______   ← fixes the calf cutting
+  Floor to under the gluteal fold (lG) ...... ______   ← fixes thigh-high length
+  Widest hip measurement (cH) ............... ______   ← decides whether you need
+                                                          a waist or hip anchor`;
+
 const FITTER_QS = [
   "Are you certified to fit custom flat-knit garments, and how many lipedema patients do you fit in a typical month?",
   "Which manufacturers' custom programs do you work with, and which would you choose for my shape and why?",
@@ -735,7 +845,7 @@ const TABS = [
   { id:"feet",    label:"Foot Check",     icon:"🦶" },
   { id:"comp",    label:"Compression 101",icon:"🧦" },
   { id:"measure", label:"Measurement Sheet",icon:"📏" },
-  { id:"advocate",label:"Get It Approved",icon:"📄" },
+  { id:"advocate",label:"Finding a Fit",  icon:"🔎" },
   { id:"report",  label:"Report for PT",  icon:"📤" },
   { id:"safety",  label:"Red Flags",      icon:"🚩" },
 ];
@@ -1357,15 +1467,15 @@ function App() {
           <div>
             <div className="ttl">Compression 101</div>
             <div className="sub">
-              Your PT is right, and the reason standard garments do not fit you is not a mystery — it is
-              arithmetic. This page gives you the vocabulary to make that case yourself.
+              The background on why standard garments land wrong on you. For the practical "what do I order
+              instead" version, go to <strong>Finding a Fit</strong> — this page is the reasoning behind it.
             </div>
 
             <div className="info">
               <strong>The short version.</strong> You need <span className="accent">custom flat-knit</span> garments,
-              not ready-made circular-knit ones. "Flat knit" and "custom" are the two terms that change the
-              conversation with a fitter or an insurer, because they name a clinical category rather than a
-              preference. Everything below is the reasoning behind those two words.
+              or an <span className="accent">adjustable wrap</span> — not ready-made circular-knit ones. Those three
+              terms are the ones that change a conversation with a fitter, because each names a construction
+              category rather than a preference. Everything below is the reasoning behind them.
             </div>
 
             {WHY_CUSTOM.map((w,i) => (
@@ -1444,12 +1554,13 @@ function App() {
             </div>
 
             <div className="card">
-              <div className="ctitle">Take these to your fitting appointment</div>
-              <ol style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 19px"}}>
-                {FITTER_QS.map((q,i) => <li key={i} style={{marginBottom:4}}>{q}</li>)}
-              </ol>
-              <button className="btn bo bsm noprint" style={{marginTop:12}}
-                onClick={() => copyText(FITTER_QS.map((q,i) => (i+1) + ". " + q).join("\n"))}>Copy these questions</button>
+              <div className="ctitle">Where to go from here</div>
+              <div style={{fontSize:12.5,lineHeight:1.8}}>
+                The <strong>Finding a Fit</strong> tab turns all of this into an ordering decision: what is
+                actually causing each fit problem, which garment styles solve which one, the donning aids that
+                deal with not being able to pull them on, and a script for the call to your supplier. The
+                <strong> Measurement Sheet</strong> tab holds the three numbers that decide everything.
+              </div>
             </div>
           </div>
         )}
@@ -1460,70 +1571,95 @@ function App() {
         {/* ================= ADVOCATE ================= */}
         {tab === "advocate" && (
           <div>
-            <div className="ttl">Getting It Approved</div>
+            <div className="ttl">Finding Ones That Fit</div>
             <div className="sub">
-              Most denials of custom compression are documentation problems, not coverage problems. This page is
-              the paperwork that fixes that.
+              You already have the diagnosis and your PT already took the measurements. The gap is not
+              paperwork — it is that what arrived was standard, it lands in the wrong places, and you cannot
+              get it on. This page is about solving that.
             </div>
+
+            <div className="info">
+              <div className="ctitle">Start with this one rule</div>
+              <div style={{fontSize:12.5,lineHeight:1.85,whiteSpace:"pre-wrap"}}>{BAND_PRINCIPLE}</div>
+            </div>
+
+            <div className="sgtitle">What is actually going wrong</div>
+            {FIT_DIAGNOSIS.map((f,i) => (
+              <div key={i} className="card mb">
+                <div className="ctitle">{f.sym}</div>
+                <div className="exlabel">What is really happening</div>
+                <div style={{fontSize:12.5,lineHeight:1.8}}>{f.real}</div>
+                <div className="exlabel">What to ask for</div>
+                <div style={{fontSize:12.5,lineHeight:1.8,color:"var(--forest)"}}>{f.fix}</div>
+              </div>
+            ))}
 
             <div className="warn">
-              <strong>How to use these.</strong> The medical necessity letter is for your clinician or PT to
-              adapt onto their letterhead and sign — you cannot write it yourself, but handing them a complete
-              draft is the difference between it happening this month and it happening in six. The appeal letter
-              is yours to send under your own name. Fill in every blank; a letter with blanks in it reads as a
-              form and gets treated like one.
+              <strong>The headline, if you read nothing else.</strong> Your knee-highs are not too tight — they
+              are too <em>short</em>. A knee-high is sized by leg length as well as width, and when the length
+              class is short for your frame the top band stops partway up and parks on the widest part of your
+              calf. That is the pain. The number that fixes it is heel to just below the knee bend, and once
+              you have it, this becomes an ordering question with an answer.
+            </div>
+
+            <div className="sgtitle">Options, in the order worth trying them</div>
+            {OPTIONS.map((o,i) => (
+              <div key={i} className="card mb">
+                <div className="rowb mb">
+                  <div className="ctitle" style={{marginBottom:0}}>{o.n}</div>
+                  <span className={"tag " + (i === 0 ? "tg" : "tt")} style={{flexShrink:0}}>{o.best}</span>
+                </div>
+                <div style={{fontSize:12.5,lineHeight:1.8,marginBottom:8}}>{o.why}</div>
+                <div style={{fontSize:12.5,lineHeight:1.75,background:"#eef5ef",borderRadius:8,padding:"9px 11px"}}>
+                  <strong>Ask for:</strong> {o.ask}
+                </div>
+              </div>
+            ))}
+
+            <div className="g2 mb2">
+              <div className="card">
+                <div className="ctitle">Getting them on</div>
+                <div style={{fontSize:12.5,color:"var(--muted)",lineHeight:1.7,marginBottom:10}}>
+                  "I could not get them up" is a solvable equipment problem, not a limit of yours. These exist
+                  because this step defeats a great many people.
+                </div>
+                {DONNING.map((d,i) => (
+                  <div key={i} style={{marginBottom:10}}>
+                    <div style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>{d.n}</div>
+                    <div style={{fontSize:12,color:"var(--muted)",lineHeight:1.7}}>{d.d}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="card">
+                <div className="ctitle">Stopping the roll-down</div>
+                <div style={{fontSize:12.5,color:"var(--muted)",lineHeight:1.7,marginBottom:10}}>
+                  Things to try on the garments you already own, tonight, before anything is reordered.
+                </div>
+                <ul style={{fontSize:12.5,lineHeight:1.8,margin:"0 0 0 17px"}}>
+                  {ANTIROLL.map((a,i) => <li key={i} style={{marginBottom:7}}>{a}</li>)}
+                </ul>
+              </div>
             </div>
 
             <div className="card mb2">
               <div className="rowb mb">
-                <div className="ctitle" style={{marginBottom:0}}>Letter of Medical Necessity — draft for your clinician</div>
-                <button className="btn ba bsm noprint" onClick={() => copyText(LMN)}>Copy</button>
+                <div className="ctitle" style={{marginBottom:0}}>What to say when you call</div>
+                <button className="btn ba bsm noprint" onClick={() => copyText(SUPPLIER_SCRIPT)}>Copy</button>
               </div>
-              <div className="tmpl">{LMN}</div>
+              <div className="tmpl">{SUPPLIER_SCRIPT}</div>
             </div>
 
             <div className="card mb2">
-              <div className="rowb mb">
-                <div className="ctitle" style={{marginBottom:0}}>Appeal letter — if it gets denied</div>
-                <button className="btn ba bsm noprint" onClick={() => copyText(APPEAL)}>Copy</button>
-              </div>
-              <div className="tmpl">{APPEAL}</div>
-            </div>
-
-            <div className="card mb2">
-              <div className="ctitle">Denial reasons, and what actually answers each one</div>
-              <div className="scroll">
-                <table className="tbl">
-                  <thead><tr><th style={{width:"30%"}}>If they say</th><th>Your response</th></tr></thead>
-                  <tbody>{DENIALS.map((d,i) => (
-                    <tr key={i}><td><strong>{d.d}</strong></td><td style={{lineHeight:1.7}}>{d.r}</td></tr>
-                  ))}</tbody>
-                </table>
-              </div>
-            </div>
-
-            <div className="card mb2">
-              <div className="ctitle">Coverage landscape — what to ask about</div>
-              <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
-                {MEDICARE_NOTES.map((m,i) => <li key={i} style={{marginBottom:6}}>{m}</li>)}
-              </ul>
-            </div>
-
-            <div className="card">
-              <div className="ctitle">Order of operations</div>
+              <div className="ctitle">Questions for the fitter</div>
               <ol style={{fontSize:12.5,lineHeight:1.9,margin:"5px 0 0 19px"}}>
-                <li><strong>Document the ready-made failure first.</strong> Photograph a standard garment on you — rolled at the top, digging in, sliding down — and photograph the indentation marks 20 minutes after removal. This evidence is more persuasive than any letter, and you cannot recreate it later.</li>
-                <li><strong>Fill in the measurement sheet</strong> on the previous tab, both legs, morning measurements. Print it.</li>
-                <li><strong>Ask about arterial screening (ABI)</strong> before compression, given the neuropathy. Get it in the chart.</li>
-                <li><strong>Ask your clinician whether a lymphatic component is documented.</strong> This one question often decides which coverage pathway is open to you.</li>
-                <li><strong>Get the prescription</strong>, specifying custom flat knit, the class, the style, and the quantity per limb.</li>
-                <li><strong>Get the LMN signed</strong> with the measurement sheet and photos attached.</li>
-                <li><strong>Confirm the supplier is in network</strong> and can do custom flat knit specifically. Get a written cost estimate before they order.</li>
-                <li><strong>Submit for prior authorization</strong> if your plan requires it. Do not let anyone order before that comes back.</li>
-                <li><strong>If denied, appeal in writing within the deadline</strong> and request a peer-to-peer review. A large share of appeals succeed — the first denial is frequently automated, not clinical.</li>
-                <li><strong>Keep a log</strong> of every call: date, name, reference number, what they said. It matters at the external review stage.</li>
+                {FITTER_QS.map((q,i) => <li key={i} style={{marginBottom:4}}>{q}</li>)}
               </ol>
+              <button className="btn bo bsm noprint" style={{marginTop:12}}
+                onClick={() => copyText(FITTER_QS.map((q,i) => (i+1) + ". " + q).join("\n"))}>Copy these questions</button>
             </div>
+
+            <LaterSection copyText={copyText}/>
           </div>
         )}
 
@@ -1666,6 +1802,62 @@ function App() {
 }
 
 /* ============================================================
+   PAPERWORK — kept out of the way, because right now the problem is
+   sourcing a garment that fits, not fighting a denial. Here if it is
+   ever needed.
+   ============================================================ */
+function LaterSection({ copyText }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="card">
+      <div className="rowb" style={{cursor:"pointer"}} onClick={() => setOpen(!open)}>
+        <div>
+          <div className="ctitle" style={{marginBottom:2}}>If insurance ever does push back</div>
+          <div style={{fontSize:12,color:"var(--muted)",lineHeight:1.6}}>
+            Not your situation today. Tucked away here in case custom gets denied later.
+          </div>
+        </div>
+        <span style={{color:"var(--muted)",fontSize:18,lineHeight:1}}>{open ? "−" : "+"}</span>
+      </div>
+      {open && (
+        <div style={{marginTop:14}}>
+          <div style={{fontSize:12.5,lineHeight:1.8,marginBottom:13}}>
+            If you go to order custom flat knit and the plan refuses to cover it, these are the two documents
+            that matter. The letter of medical necessity is for your clinician to adapt and sign; the appeal is
+            yours to send. The strongest evidence in either one is your measurement sheet showing that your
+            numbers land in different stock size categories, plus a photograph of a standard garment sitting at
+            mid-calf on you.
+          </div>
+          <div className="rowb mb">
+            <span style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>Letter of medical necessity</span>
+            <button className="btn bo bsm" onClick={() => copyText(LMN)}>Copy</button>
+          </div>
+          <div className="tmpl" style={{maxHeight:230,marginBottom:15}}>{LMN}</div>
+          <div className="rowb mb">
+            <span style={{fontSize:12.5,fontWeight:600,color:"var(--forest)"}}>Appeal letter</span>
+            <button className="btn bo bsm" onClick={() => copyText(APPEAL)}>Copy</button>
+          </div>
+          <div className="tmpl" style={{maxHeight:230,marginBottom:15}}>{APPEAL}</div>
+          <div className="sgtitle">Common denial reasons</div>
+          <div className="scroll">
+            <table className="tbl">
+              <thead><tr><th style={{width:"30%"}}>If they say</th><th>Response</th></tr></thead>
+              <tbody>{DENIALS.map((d,i) => (
+                <tr key={i}><td><strong>{d.d}</strong></td><td style={{lineHeight:1.7}}>{d.r}</td></tr>
+              ))}</tbody>
+            </table>
+          </div>
+          <div className="sgtitle">Coverage notes</div>
+          <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+            {MEDICARE_NOTES.map((m,i) => <li key={i} style={{marginBottom:6}}>{m}</li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ============================================================
    MEASUREMENT SHEET
    ============================================================ */
 function MeasureTab({ st, upd, today, copyText }) {
@@ -1716,6 +1908,19 @@ function MeasureTab({ st, upd, today, copyText }) {
       <div className="sub">
         Fill this in, print it, and take it to your fitter and your insurer. These numbers are the strongest
         argument you have — they turn "standard doesn't fit me" into something a reviewer cannot wave away.
+      </div>
+
+      <div className="info">
+        <div className="ctitle">The three numbers that decide everything for you</div>
+        <ul style={{fontSize:12.5,lineHeight:1.85,margin:"5px 0 0 17px"}}>
+          <li><strong>lD — heel to just below the knee bend.</strong> This is the one that fixes knee-highs
+            cutting at mid-calf. It decides the length class you order. Get this number and the calf problem
+            becomes solvable in a phone call.</li>
+          <li><strong>lG — floor to just under the gluteal fold.</strong> Decides thigh-high length. On a tall
+            frame this is usually the number that stock sizing gets wrong.</li>
+          <li><strong>cH — widest hip.</strong> Decides whether you need a waist or hip anchor, or a pantyhose
+            or chaps style, instead of a thigh-high that has nothing to hold onto.</li>
+        </ul>
       </div>
 
       <div className="warn">

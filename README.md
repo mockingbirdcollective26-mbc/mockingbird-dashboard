@@ -24,9 +24,11 @@ knee flexion, and unsupported balance work.
 - **Flare mode** — when logged pain is high, the plan swaps itself to a zero-load
   Calm Day protocol automatically.
 - **Symptom tracker** with charts, and **daily foot check** for neuropathy.
-- **Compression center** — why custom flat-knit is indicated, a full measurement sheet
-  (RAL landmarks, both limbs), a letter-of-medical-necessity draft, an appeal letter,
-  and a denial-reason playbook.
+- **Compression center** — a fit troubleshooter (what each fit failure actually means and
+  what to order instead), garment options ranked, donning aids, anti-roll fixes, a supplier
+  call script, and a full measurement sheet using RAL landmarks for both limbs. Insurance
+  paperwork is kept collapsed under "if they ever push back", since the live problem is
+  sourcing a garment that fits rather than winning an appeal.
 - **Exportable report** for physical therapy appointments and insurance paperwork.
 
 All data is kept in `localStorage` on the device. Nothing is uploaded anywhere, and
